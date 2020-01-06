@@ -10,18 +10,16 @@
 }
 ```
 
-# Train once, specialize for many deployment scenarios
+## Train once, specialize for many deployment scenarios
 ![](https://hanlab.mit.edu/files/OnceForAll/figures/overview_new.png)
 
-# 80% top1 ImageNet accuracy under mobile setting
-<p align="center">
-    <img src="https://hanlab.mit.edu/files/OnceForAll/figures/ImageNet_mobile_80acc.png" width="80%" />
-</p>
+## 80% top1 ImageNet accuracy under mobile setting
+![](https://hanlab.mit.edu/files/OnceForAll/figures/ImageNet_mobile_80acc.png)
 
-# Consistently outperforms MobileNetV3
+## Consistently outperforms MobileNetV3
 ![](https://hanlab.mit.edu/files/OnceForAll/figures/many_hardwares.png)
 
-# How to use / evaluate **OFA Specialized Networks**
+## How to use / evaluate **OFA Specialized Networks**
 ### Use
 ```python
 """ OFA Specialized Networks.
@@ -108,7 +106,7 @@ net, image_size = ofa_specialized(net_id, pretrained=True)
 * cpu_lat@11ms_top1@72.0_finetune@25
 * cpu_lat@10ms_top1@71.1_finetune@25
 
-# How to use / evaluate **OFA Networks**
+## How to use / evaluate **OFA Networks**
 ### Use
 ```python
 """ OFA Networks.
@@ -129,7 +127,7 @@ manual_subnet = ofa_network.get_active_subnet(preserve_weight=True)
 
 `python eval_ofa_net.py --path 'Your path to imagent' --net ofa_mbv3_d234_e346_k357_w1.0 `
 
-# How to train **OFA Networks**
+## How to train **OFA Networks**
 ```bash
 mpirun -np 32 -H <server1_ip>:8,<server2_ip>:8,<server3_ip>:8,<server4_ip>:8 \
     -bind-to none -map-by slot \
@@ -142,13 +140,13 @@ horovodrun -np 32 -H <server1_ip>:8,<server2_ip>:8,<server3_ip>:8,<server4_ip>:8
     python train_ofa_net.py
 ```
 
-# Requirement
+## Requirement
 * Python 3.6
 * Pytorch 1.0.0
 * ImageNet Dataset 
 * Horovod
 
-# Related work on automated and efficient deep learning:
+## Related work on automated and efficient deep learning:
 [ProxylessNAS: Direct Neural Architecture Search on Target Task and Hardware](https://arxiv.org/pdf/1812.00332.pdf) (ICLR’19)
 
 [AutoML for Architecting Efficient and Specialized Neural Networks](https://ieeexplore.ieee.org/abstract/document/8897011) (IEEE Micro)
