@@ -11,7 +11,7 @@
 ```
 
 # Train once, specialize for many deployment scenarios
-![](https://hanlab.mit.edu/files/OnceForAll/figures/overview.png)
+![](https://hanlab.mit.edu/files/OnceForAll/figures/overview_new.png)
 
 # 80% top1 ImageNet accuracy under mobile setting
 <p align="center">
