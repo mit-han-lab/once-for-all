@@ -19,6 +19,9 @@
 ## Consistently outperforms MobileNetV3
 ![](https://hanlab.mit.edu/files/OnceForAll/figures/many_hardwares.png)
 
+## Diverse hardware platforms
+![](https://hanlab.mit.edu/files/OnceForAll/figures/diverse_hardwares.png)
+
 ## How to use / evaluate **OFA Specialized Networks**
 ### Use
 ```python
