@@ -1,5 +1,5 @@
 # Once for All: Train One Network and Specialize it for Efficient Deployment [[arXiv]](https://arxiv.org/abs/1908.09791) 
-```bash
+```BibTex
 @inproceedings{
   cai2020once,
   title={Once for All: Train One Network and Specialize it for Efficient Deployment},
