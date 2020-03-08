@@ -20,7 +20,7 @@
 ![](https://hanlab.mit.edu/files/OnceForAll/figures/diverse_hardwares_new.png)
 
 ## Diverse hardware platforms
-![](https://hanlab.mit.edu/files/OnceForAll/figures/many_hardwares_new.png)
+![](https://hanlab.mit.edu/files/OnceForAll/figures/many_hardwares_new2.png)
 
 ## How to use / evaluate **OFA Specialized Networks**
 ### Use
