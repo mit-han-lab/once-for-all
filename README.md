@@ -11,16 +11,16 @@
 ```
 
 ## Train once, specialize for many deployment scenarios
-![](https://hanlab.mit.edu/files/OnceForAll/figures/overview_new.png)
+![](https://hanlab.mit.edu/files/OnceForAll/figures/overview_new_2.png)
 
 ## 80% top1 ImageNet accuracy under mobile setting
 ![](https://hanlab.mit.edu/files/OnceForAll/figures/ImageNet_mobile_80acc.png)
 
 ## Consistently outperforms MobileNetV3
-![](https://hanlab.mit.edu/files/OnceForAll/figures/many_hardwares.png)
+![](https://hanlab.mit.edu/files/OnceForAll/figures/diverse_hardwares_new.png)
 
 ## Diverse hardware platforms
-![](https://hanlab.mit.edu/files/OnceForAll/figures/diverse_hardwares.png)
+![](https://hanlab.mit.edu/files/OnceForAll/figures/many_hardwares_new.png)
 
 ## How to use / evaluate **OFA Specialized Networks**
 ### Use
