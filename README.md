@@ -199,7 +199,7 @@ manual_subnet = ofa_network.get_active_subnet(preserve_weight=True)
 ```
 ### Evaluate
 
-`python eval_ofa_net.py --path 'Your path to imagent' --net ofa_mbv3_d234_e346_k357_w1.0 `
+`python eval_ofa_net.py --path 'Your path to imagenet' --net ofa_mbv3_d234_e346_k357_w1.0 `
 
 ## How to train **OFA Networks**
 ```bash
