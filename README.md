@@ -1,4 +1,4 @@
-# Once for All: Train One Network and Specialize it for Efficient Deployment [[arXiv]](https://arxiv.org/abs/1908.09791) 
+# Once for All: Train One Network and Specialize it for Efficient Deployment [[Website]](https://ofa.mit.edu/), [[arXiv]](https://arxiv.org/abs/1908.09791), [[Slides]](https://hanlab.mit.edu/files/OnceForAll/OFA%20Slides.pdf), [[Video]](https://youtu.be/a_OeT8MXzWI)
 ```BibTex
 @inproceedings{
   cai2020once,
@@ -14,7 +14,7 @@
 ![](https://hanlab.mit.edu/files/OnceForAll/figures/overview_new_2.png)
 
 ## 80% top1 ImageNet accuracy under mobile setting
-![](https://hanlab.mit.edu/files/OnceForAll/figures/cnn_imagenet.png)
+![](https://hanlab.mit.edu/files/OnceForAll/figures/cnn_imagenet.pdf)
 
 ![](https://hanlab.mit.edu/files/OnceForAll/figures/ImageNet_mobile_80acc.png)
 
