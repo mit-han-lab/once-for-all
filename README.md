@@ -16,7 +16,7 @@
 ## 80% top1 ImageNet accuracy under mobile setting
 ![](https://hanlab.mit.edu/files/OnceForAll/figures/cnn_imagenet_new.png)
 
-![](https://hanlab.mit.edu/files/OnceForAll/figures/ImageNet_mobile_80acc.png)
+![](https://hanlab.mit.edu/files/OnceForAll/figures/ImageNet_mobile_80acc_mac.png)
 
 ## Consistently outperforms MobileNetV3
 ![](https://hanlab.mit.edu/files/OnceForAll/figures/diverse_hardwares_new.png)
