@@ -21,7 +21,7 @@
 ## Consistently outperforms MobileNetV3 on Diverse hardware platforms
 ![](figures/diverse_hardware.png)
 
-## How to use / evaluate **OFA Specialized Networks**
+## How to use / evaluate **OFA Specialized Networks** 
 ### Use
 ```python
 """ OFA Specialized Networks.
@@ -30,6 +30,7 @@ Example: net, image_size = ofa_specialized('flops@595M_top1@80.0_finetune@75', p
 from model_zoo import ofa_specialized
 net, image_size = ofa_specialized(net_id, pretrained=True)
 ```
+If the above scripts failed to download, you download it manually from [Google Drive](https://drive.google.com/drive/folders/1ez-t_DAHDet2fqe9TZUTJmvrU-AwofAt?usp=sharing) and put them under $HOME/.torch/ofa_specialized/.
 
 ### Evaluate
 
@@ -194,6 +195,8 @@ random_subnet = ofa_network.get_active_subnet(preserve_weight=True)
 ofa_network.set_active_subnet(ks=7, e=6, d=4)
 manual_subnet = ofa_network.get_active_subnet(preserve_weight=True)
 ```
+If the above scripts failed to download, you download it manually from [Google Drive](https://drive.google.com/drive/folders/10leLmIiMtaRu4J46KwrBaMydvQt0qFuI?usp=sharing) and put them under $HOME/.torch/ofa_nets/.
+
 ### Evaluate
 
 `python eval_ofa_net.py --path 'Your path to imagenet' --net ofa_mbv3_d234_e346_k357_w1.0 `
