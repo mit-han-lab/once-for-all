@@ -1,4 +1,4 @@
-# Once for All: Train One Network and Specialize it for Efficient Deployment [[Website]](https://ofa.mit.edu/) [[arXiv]](https://arxiv.org/abs/1908.09791) [[Slides]](https://hanlab.mit.edu/files/OnceForAll/OFA%20Slides.pdf) [[Video]](https://youtu.be/a_OeT8MXzWI)
+# Once for All: Train One Network and Specialize it for Efficient Deployment [[arXiv]](https://arxiv.org/abs/1908.09791) [[Slides]](https://hanlab.mit.edu/files/OnceForAll/OFA%20Slides.pdf) [[Video]](https://youtu.be/a_OeT8MXzWI)
 ```BibTex
 @inproceedings{
   cai2020once,
@@ -213,6 +213,10 @@ or
 horovodrun -np 32 -H <server1_ip>:8,<server2_ip>:8,<server3_ip>:8,<server4_ip>:8 \
     python train_ofa_net.py
 ```
+
+## Introduction Video
+
+[![Watch the video](figures/video_figure.png)](https://www.youtube.com/watch?v=a_OeT8MXzWI&feature=youtu.be)
 
 ## Requirement
 * Python 3.6
