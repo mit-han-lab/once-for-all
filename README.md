@@ -14,7 +14,7 @@
 ![](figures/overview.png)
 
 ## 80% top1 ImageNet accuracy under mobile setting
-![](figures/cnn_imagenet.png)
+![](figures/cnn_imagenet_new.png)
 
 ![](figures/imagenet_80_acc.png)
 
