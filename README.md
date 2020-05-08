@@ -10,6 +10,10 @@
 }
 ```
 
+## News
+- Fisrt place in the 4th [Low-Power Computer Vision Challenge](https://lpcv.ai/competitions/2019), both classification and detection track.
+- First place in the 3rd [Low-Power Computer Vision Challenge](https://lpcv.ai/competitions/2019), DSP track at ICCV’19 using the Once-for-all Network.
+
 ## Train once, specialize for many deployment scenarios
 ![](figures/overview.png)
 
