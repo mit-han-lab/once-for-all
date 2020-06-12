@@ -15,7 +15,7 @@ from ofa.elastic_nn.networks import OFAMobileNetV3
 from ofa.imagenet_codebase.run_manager import DistributedImageNetRunConfig
 from ofa.imagenet_codebase.run_manager import DistributedRunManager
 from ofa.imagenet_codebase.data_providers.base_provider import MyRandomResizedCrop
-from ofa.imagenet_codebase.utils import download_url
+from ofa.utils import download_url
 from ofa.elastic_nn.training.progressive_shrinking import load_models
 
 parser = argparse.ArgumentParser()
