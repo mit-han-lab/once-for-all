@@ -7,7 +7,8 @@ import torch
 import argparse
 
 from imagenet_codebase.data_providers.imagenet import ImagenetDataProvider
-from imagenet_codebase.run_manager import ImagenetRunConfig, RunManager
+from imagenet_codebase.run_manager import ImagenetRunConfig
+from imagenet_codebase.run_manager.run_manager import RunManager
 from model_zoo import ofa_net
 
 

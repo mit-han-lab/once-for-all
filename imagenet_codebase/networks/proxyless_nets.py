@@ -4,7 +4,9 @@
 
 import json
 
-from layers import *
+import torch.nn as nn
+# from layers import *
+from layers import MyModule, ZeroLayer, set_layer_from_config, MBInvertedConvLayer, ConvLayer, IdentityLayer, LinearLayer
 from imagenet_codebase.utils import download_url, make_divisible, MyNetwork, int2list
 
 
@@ -27,7 +29,7 @@ def proxyless_base(net_config=None, n_classes=None, bn_param=None, dropout_rate=
         net.set_bn_param(momentum=bn_param[0], eps=bn_param[1])
 
     return net
-    
+
 
 class MobileInvertedResidualBlock(MyModule):
 
@@ -115,7 +117,7 @@ class ProxylessNASNets(MyNetwork):
         first_conv = set_layer_from_config(config['first_conv'])
         feature_mix_layer = set_layer_from_config(config['feature_mix_layer'])
         classifier = set_layer_from_config(config['classifier'])
-        
+
         blocks = []
         for block_config in config['blocks']:
             blocks.append(MobileInvertedResidualBlock.build_from_config(block_config))

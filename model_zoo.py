@@ -4,7 +4,9 @@
 
 import json
 import torch
-from layers import *
+import torch.nn as nn
+# from layers import *
+from layers import MyModule, ZeroLayer, set_layer_from_config, MBInvertedConvLayer
 from utils import MyNetwork, download_url
 
 

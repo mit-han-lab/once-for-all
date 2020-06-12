@@ -13,7 +13,7 @@ import torch
 import torch.nn.functional as F
 import horovod.torch as hvd
 
-from imagenet_codebase.run_manager import DistributedMetric
+from imagenet_codebase.utils import DistributedMetric
 from imagenet_codebase.utils import accuracy, list_mean, cross_entropy_loss_with_soft_target, subset_mean, \
     AverageMeter, int2list, download_url
 from imagenet_codebase.data_providers.base_provider import MyRandomResizedCrop

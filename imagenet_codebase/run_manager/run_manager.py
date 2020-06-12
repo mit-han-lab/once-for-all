@@ -2,15 +2,24 @@
 # Han Cai, Chuang Gan, Tianzhe Wang, Zhekai Zhang, Song Han
 # International Conference on Learning Representations (ICLR), 2020.
 
+import os
+import time
 import json
+import math
 from tqdm import tqdm
 
+import numpy as np
+
+import torch.nn as nn
+import torch.nn.functional as F
 import torch.nn.parallel
 import torch.backends.cudnn as cudnn
 import torch.optim
 import torchvision
 
-from imagenet_codebase.utils import *
+# from imagenet_codebase.utils import *
+from imagenet_codebase.utils import get_net_info, cross_entropy_loss_with_soft_target, \
+    cross_entropy_with_label_smoothing, AverageMeter, accuracy
 
 
 class RunConfig:
@@ -72,14 +81,14 @@ class RunConfig:
         for param_group in optimizer.param_groups:
             param_group['lr'] = new_lr
         return new_lr
-    
+
     def warmup_adjust_learning_rate(self, optimizer, T_total, nBatch, epoch, batch=0, warmup_lr=0):
         T_cur = epoch * nBatch + batch + 1
         new_lr = T_cur / T_total * (self.init_lr - warmup_lr) + warmup_lr
         for param_group in optimizer.param_groups:
             param_group['lr'] = new_lr
         return new_lr
-        
+
     """ data provider """
 
     @property
@@ -112,7 +121,7 @@ class RunConfig:
             ]
         else:
             net_params = [{'params': net_params, 'weight_decay': self.weight_decay}]
-            
+
         if self.opt_type == 'sgd':
             opt_param = {} if self.opt_param is None else self.opt_param
             momentum, nesterov = opt_param.get('momentum', 0.9), opt_param.get('nesterov', True)
@@ -125,7 +134,7 @@ class RunConfig:
 
 
 class RunManager:
-    
+
     def __init__(self, path, net, run_config: RunConfig, init=True, measure_latency=None, no_gpu=False, mix_prec=None):
         self.path = path
         self.net = net
@@ -147,7 +156,7 @@ class RunManager:
         # initialize model (default)
         if init:
             self.network.init_model(run_config.model_init)
-        
+
         # net info
         net_info = get_net_info(self.net, self.run_config.data_provider.data_shape, measure_latency, True)
         with open('%s/net_info.txt' % self.path, 'w') as fout:
@@ -166,7 +175,7 @@ class RunManager:
         else:
             self.train_criterion = nn.CrossEntropyLoss()
         self.test_criterion = nn.CrossEntropyLoss()
-            
+
         # optimizer
         if self.run_config.no_decay_keys:
             keys = self.run_config.no_decay_keys.split('#')
@@ -204,7 +213,7 @@ class RunManager:
             os.makedirs(logs_path, exist_ok=True)
             self.__dict__['_logs_path'] = logs_path
         return self.__dict__['_logs_path']
-    
+
     @property
     def network(self):
         if isinstance(self.net, nn.DataParallel):
@@ -239,7 +248,7 @@ class RunManager:
             print(log_str)
 
     """ save and load models """
-    
+
     def save_model(self, checkpoint=None, is_best=False, model_name=None):
         if checkpoint is None:
             checkpoint = {'state_dict': self.network.state_dict()}
@@ -261,7 +270,7 @@ class RunManager:
         if is_best:
             best_path = os.path.join(self.save_path, 'model_best.pth.tar')
             torch.save({'state_dict': checkpoint['state_dict']}, best_path)
-    
+
     def load_model(self, model_fname=None):
         latest_fname = os.path.join(self.save_path, 'latest.txt')
         if model_fname is None and os.path.exists(latest_fname):
@@ -296,7 +305,7 @@ class RunManager:
             print("=> loaded checkpoint '{}'".format(model_fname))
         except Exception:
             print('fail to load checkpoint from %s' % self.save_path)
-    
+
     def save_config(self):
         """ dump run_config and net_config to the model_folder """
         net_save_path = os.path.join(self.path, 'net.config')
@@ -308,7 +317,7 @@ class RunManager:
         print('Run configs dump to %s' % run_save_path)
 
     """ train and test """
-    
+
     def validate(self, epoch=0, is_test=True, run_str='', net=None, data_loader=None, no_logs=False):
         if net is None:
             net = self.net
@@ -320,7 +329,7 @@ class RunManager:
                 data_loader = self.run_config.test_loader
             else:
                 data_loader = self.run_config.valid_loader
-        
+
         net.eval()
 
         losses = AverageMeter()
@@ -456,13 +465,13 @@ class RunManager:
 
             if (epoch + 1) % self.run_config.validation_frequency == 0:
                 img_size, val_loss, val_acc, val_acc5 = self.validate_all_resolution(epoch=epoch, is_test=False)
-                
+
                 is_best = np.mean(val_acc) > self.best_acc
                 self.best_acc = max(self.best_acc, np.mean(val_acc))
-                val_log = 'Valid [{0}/{1}]\tloss {2:.3f}\ttop-1 acc {3:.3f} ({4:.3f})'.\
+                val_log = 'Valid [{0}/{1}]\tloss {2:.3f}\ttop-1 acc {3:.3f} ({4:.3f})'. \
                     format(epoch + 1 - warmup_epoch, self.run_config.n_epochs,
                            np.mean(val_loss), np.mean(val_acc), self.best_acc)
-                val_log += '\ttop-5 acc {0:.3f}\tTrain top-1 {top1:.3f}\tloss {train_loss:.3f}\t'.\
+                val_log += '\ttop-5 acc {0:.3f}\tTrain top-1 {top1:.3f}\tloss {train_loss:.3f}\t'. \
                     format(np.mean(val_acc5), top1=train_top1, train_loss=train_loss)
                 for i_s, v_a in zip(img_size, val_acc):
                     val_log += '(%d, %.3f), ' % (i_s, v_a)
@@ -476,7 +485,7 @@ class RunManager:
                 'optimizer': self.optimizer.state_dict(),
                 'state_dict': self.network.state_dict(),
             }, is_best=is_best)
-    
+
     def reset_running_statistics(self, net=None):
         from elastic_nn.utils import set_running_statistics
         if net is None:

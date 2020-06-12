@@ -2,8 +2,10 @@
 # Han Cai, Chuang Gan, Tianzhe Wang, Zhekai Zhang, Song Han
 # International Conference on Learning Representations (ICLR), 2020.
 
-from imagenet_codebase.run_manager.run_manager import *
-from imagenet_codebase.data_providers.imagenet import *
+# from imagenet_codebase.run_manager.run_manager import *
+# from imagenet_codebase.data_providers.imagenet import *
+from imagenet_codebase.run_manager.run_manager import RunConfig
+from imagenet_codebase.data_providers.imagenet import DataProvider, ImagenetDataProvider
 
 
 class ImagenetRunConfig(RunConfig):
@@ -43,7 +45,7 @@ class ImagenetRunConfig(RunConfig):
 
 
 class DistributedImageNetRunConfig(ImagenetRunConfig):
-    
+
     def __init__(self, n_epochs=150, init_lr=0.05, lr_schedule_type='cosine', lr_schedule_param=None,
                  dataset='imagenet', train_batch_size=64, test_batch_size=64, valid_size=None,
                  opt_type='sgd', opt_param=None, weight_decay=4e-5, label_smoothing=0.1, no_decay_keys=None,
@@ -59,10 +61,10 @@ class DistributedImageNetRunConfig(ImagenetRunConfig):
             model_init, validation_frequency, print_frequency, n_worker, resize_scale, distort_color, image_size,
             **kwargs
         )
-        
+
         self._num_replicas = kwargs['num_replicas']
         self._rank = kwargs['rank']
-    
+
     @property
     def data_provider(self):
         if self.__dict__.get('_data_provider', None) is None:

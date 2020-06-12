@@ -2,18 +2,29 @@
 # Han Cai, Chuang Gan, Tianzhe Wang, Zhekai Zhang, Song Han
 # International Conference on Learning Representations (ICLR), 2020.
 
-from tqdm import tqdm
+import os
 import json
+import time
+import math
+from tqdm import tqdm
 
+
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
 import torch.backends.cudnn as cudnn
 
-from imagenet_codebase.utils import *
+import horovod.torch as hvd
+
+# from imagenet_codebase.utils import *
+from imagenet_codebase.utils import get_net_info, cross_entropy_with_label_smoothing, \
+    cross_entropy_loss_with_soft_target, DistributedMetric, accuracy, AverageMeter, list_mean
 from imagenet_codebase.run_manager import RunConfig
 from imagenet_codebase.data_providers.base_provider import MyRandomResizedCrop
-    
+
 
 class DistributedRunManager:
-    
+
     def __init__(self, path, net, run_config: RunConfig, hvd_compression, backward_steps=1, is_root=False, init=True):
         self.path = path
         self.net = net
@@ -35,7 +46,7 @@ class DistributedRunManager:
             with open('%s/net_info.txt' % self.path, 'w') as fout:
                 fout.write(json.dumps(net_info, indent=4) + '\n')
                 fout.write(self.net.module_str)
-        
+
         # criterion
         if isinstance(self.run_config.mixup_alpha, float):
             self.train_criterion = cross_entropy_loss_with_soft_target
@@ -45,7 +56,7 @@ class DistributedRunManager:
         else:
             self.train_criterion = nn.CrossEntropyLoss()
         self.test_criterion = nn.CrossEntropyLoss()
-        
+
         # optimizer
         if self.run_config.no_decay_keys:
             keys = self.run_config.no_decay_keys.split('#')
@@ -78,7 +89,7 @@ class DistributedRunManager:
             os.makedirs(logs_path, exist_ok=True)
             self.__dict__['_logs_path'] = logs_path
         return self.__dict__['_logs_path']
-    
+
     def write_log(self, log_str, prefix='valid', should_print=True):
         if self.is_root:
             """ prefix: valid, train, test """
@@ -98,9 +109,9 @@ class DistributedRunManager:
                     fout.flush()
             if should_print:
                 print(log_str)
-    
+
     """ save & load model & save_config & broadcast """
-    
+
     def save_config(self):
         if self.is_root:
             run_save_path = os.path.join(self.path, 'run.config')
@@ -112,12 +123,12 @@ class DistributedRunManager:
             if not os.path.isfile(net_save_path):
                 json.dump(self.net.config, open(net_save_path, 'w'), indent=4)
                 print('Network configs dump to %s' % net_save_path)
-        
+
     def save_model(self, checkpoint=None, is_best=False, model_name=None):
         if self.is_root:
             if checkpoint is None:
                 checkpoint = {'state_dict': self.net.state_dict()}
-    
+
             if model_name is None:
                 model_name = 'checkpoint.pth.tar'
 
@@ -130,7 +141,7 @@ class DistributedRunManager:
             if is_best:
                 best_path = os.path.join(self.save_path, 'model_best.pth.tar')
                 torch.save({'state_dict': checkpoint['state_dict']}, best_path)
-    
+
     def load_model(self, model_fname=None):
         if self.is_root:
             latest_fname = os.path.join(self.save_path, 'latest.txt')
@@ -145,25 +156,25 @@ class DistributedRunManager:
                     with open(latest_fname, 'w') as fout:
                         fout.write(model_fname + '\n')
                 print("=> loading checkpoint '{}'".format(model_fname))
-        
+
                 if torch.cuda.is_available():
                     checkpoint = torch.load(model_fname)
                 else:
                     checkpoint = torch.load(model_fname, map_location='cpu')
-        
+
                 self.net.load_state_dict(checkpoint['state_dict'])
-        
+
                 if 'epoch' in checkpoint:
                     self.start_epoch = checkpoint['epoch'] + 1
                 if 'best_acc' in checkpoint:
                     self.best_acc = checkpoint['best_acc']
                 if 'optimizer' in checkpoint:
                     self.optimizer.load_state_dict(checkpoint['optimizer'])
-        
+
                 self.write_log("=> loaded checkpoint '{}'".format(model_fname), 'valid')
             except Exception:
                 self.write_log('fail to load checkpoint from %s' % self.save_path, 'valid')
-    
+
     def broadcast(self):
         self.start_epoch = hvd.broadcast(torch.LongTensor(1).fill_(self.start_epoch)[0], 0, name='start_epoch').item()
         self.best_acc = hvd.broadcast(torch.Tensor(1).fill_(self.best_acc)[0], 0, name='best_acc').item()
@@ -171,7 +182,7 @@ class DistributedRunManager:
         hvd.broadcast_optimizer_state(self.optimizer, 0)
 
     """ train & validate """
-    
+
     def validate(self, epoch=0, is_test=True, run_str='', net=None, data_loader=None, no_logs=False):
         if net is None:
             net = self.net
@@ -198,7 +209,7 @@ class DistributedRunManager:
                     loss = self.test_criterion(output, labels)
                     # measure accuracy and record loss
                     acc1, acc5 = accuracy(output, labels, topk=(1, 5))
-            
+
                     losses.update(loss, images.size(0))
                     top1.update(acc1[0], images.size(0))
                     top5.update(acc5[0], images.size(0))
@@ -210,7 +221,7 @@ class DistributedRunManager:
                     })
                     t.update(1)
         return losses.avg.item(), top1.avg.item(), top5.avg.item()
-    
+
     def validate_all_resolution(self, epoch=0, is_test=True, net=None):
         if net is None:
             net = self.net
@@ -228,19 +239,19 @@ class DistributedRunManager:
         else:
             loss, top1, top5 = self.validate(epoch, is_test, net=net)
             return [self.run_config.data_provider.active_img_size], [loss], [top1], [top5]
-    
+
     def train_one_epoch(self, args, epoch, warmup_epochs=5, warmup_lr=0):
         self.net.train()
         self.run_config.train_loader.sampler.set_epoch(epoch)
         MyRandomResizedCrop.EPOCH = epoch
-    
+
         nBatch = len(self.run_config.train_loader)
-    
+
         losses = DistributedMetric('train_loss')
         top1 = DistributedMetric('train_top1')
         top5 = DistributedMetric('train_top5')
         data_time = AverageMeter()
-    
+
         with tqdm(total=nBatch,
                   desc='Train Epoch #{}'.format(epoch + 1),
                   disable=not self.is_root) as t:
@@ -253,7 +264,7 @@ class DistributedRunManager:
                     )
                 else:
                     new_lr = self.run_config.adjust_learning_rate(self.optimizer, epoch - warmup_epochs, i, nBatch)
-            
+
                 images, labels = images.cuda(), labels.cuda()
                 target = labels
 
@@ -282,13 +293,13 @@ class DistributedRunManager:
                 self.optimizer.zero_grad()
                 loss.backward()
                 self.optimizer.step()
-            
+
                 # measure accuracy and record loss
                 acc1, acc5 = accuracy(output, target, topk=(1, 5))
                 losses.update(loss, images.size(0))
                 top1.update(acc1[0], images.size(0))
                 top5.update(acc5[0], images.size(0))
-            
+
                 t.set_postfix({
                     'loss': losses.avg.item(),
                     'top1': top1.avg.item(),
@@ -300,14 +311,14 @@ class DistributedRunManager:
                 })
                 t.update(1)
                 end = time.time()
-    
+
         return losses.avg.item(), top1.avg.item(), top5.avg.item()
-    
+
     def train(self, args, warmup_epochs=5, warmup_lr=0):
         for epoch in range(self.start_epoch, self.run_config.n_epochs + warmup_epochs):
             train_loss, train_top1, train_top5 = self.train_one_epoch(args, epoch, warmup_epochs, warmup_lr)
             img_size, val_loss, val_top1, val_top5 = self.validate_all_resolution(epoch, is_test=False)
-        
+
             is_best = list_mean(val_top1) > self.best_acc
             self.best_acc = max(self.best_acc, list_mean(val_top1))
             if self.is_root:
@@ -319,14 +330,14 @@ class DistributedRunManager:
                 for i_s, v_a in zip(img_size, val_top1):
                     val_log += '(%d, %.3f), ' % (i_s, v_a)
                 self.write_log(val_log, prefix='valid', should_print=False)
-            
+
                 self.save_model({
                     'epoch': epoch,
                     'best_acc': self.best_acc,
                     'optimizer': self.optimizer.state_dict(),
                     'state_dict': self.net.state_dict(),
                 }, is_best=is_best)
-    
+
     def reset_running_statistics(self, net=None):
         from elastic_nn.utils import set_running_statistics
         if net is None:

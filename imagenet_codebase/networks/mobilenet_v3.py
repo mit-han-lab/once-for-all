@@ -5,7 +5,8 @@
 import copy
 import torch
 
-from layers import *
+# from layers import *
+from layers import set_layer_from_config, MBInvertedConvLayer, ConvLayer, IdentityLayer, LinearLayer
 from imagenet_codebase.utils import MyNetwork, make_divisible
 from imagenet_codebase.networks.proxyless_nets import MobileInvertedResidualBlock
 

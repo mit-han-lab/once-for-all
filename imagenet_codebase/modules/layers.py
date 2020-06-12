@@ -2,8 +2,11 @@
 # Han Cai, Chuang Gan, Tianzhe Wang, Zhekai Zhang, Song Han
 # International Conference on Learning Representations (ICLR), 2020.
 
-from imagenet_codebase.utils import *
-
+# from imagenet_codebase.utils import *
+from collections import OrderedDict
+import torch.nn as nn
+from imagenet_codebase.utils import MyModule, build_activation, \
+    get_same_padding, ShuffleLayer, SEModule
 
 def set_layer_from_config(layer_config):
     if layer_config is None:
