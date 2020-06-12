@@ -4,6 +4,7 @@
 
 import copy
 import torch
+import torch.nn as nn
 
 # from layers import *
 from ofa.layers import set_layer_from_config, MBInvertedConvLayer, ConvLayer, IdentityLayer, LinearLayer

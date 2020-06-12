@@ -18,8 +18,8 @@ import torch.optim
 import torchvision
 
 # from imagenet_codebase.utils import *
-from ofa.imagenet_codebase.utils import get_net_info, cross_entropy_loss_with_soft_target, \
-    cross_entropy_with_label_smoothing, AverageMeter, accuracy
+from ..utils import get_net_info, cross_entropy_loss_with_soft_target, cross_entropy_with_label_smoothing
+from ofa.utils import  AverageMeter, accuracy
 
 
 class RunConfig:

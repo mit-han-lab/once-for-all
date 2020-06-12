@@ -3,7 +3,7 @@
 # International Conference on Learning Representations (ICLR), 2020.
 
 """
-    Require pytorch 1.0.0
+    Require pwytorch 1.0.0
 """
 
 import random
