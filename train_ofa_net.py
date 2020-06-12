@@ -10,13 +10,13 @@ import random
 import horovod.torch as hvd
 import torch
 
-from elastic_nn.modules.dynamic_op import DynamicSeparableConv2d
-from elastic_nn.networks.ofa_mbv3 import OFAMobileNetV3
-from imagenet_codebase.run_manager import DistributedImageNetRunConfig
-from imagenet_codebase.run_manager.distributed_run_manager import DistributedRunManager
-from imagenet_codebase.data_providers.base_provider import MyRandomResizedCrop
-from imagenet_codebase.utils import download_url
-from elastic_nn.training.progressive_shrinking import load_models
+from ofa.elastic_nn.modules.dynamic_op import DynamicSeparableConv2d
+from ofa.elastic_nn.networks import OFAMobileNetV3
+from ofa.imagenet_codebase.run_manager import DistributedImageNetRunConfig
+from ofa.imagenet_codebase.run_manager import DistributedRunManager
+from ofa.imagenet_codebase.data_providers.base_provider import MyRandomResizedCrop
+from ofa.imagenet_codebase.utils import download_url
+from ofa.elastic_nn.training.progressive_shrinking import load_models
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--task', type=str, default='depth', choices=[
@@ -198,7 +198,7 @@ if __name__ == '__main__':
         load_models(distributed_run_manager, args.teacher_model, model_path=args.teacher_path)
 
     # training
-    from elastic_nn.training.progressive_shrinking import validate, train
+    from ofa.elastic_nn.training.progressive_shrinking import validate, train
 
     validate_func_dict = {'image_size_list': {224} if isinstance(args.image_size, int) else sorted({160, 224}),
                           'width_mult_list': sorted({0, len(args.width_mult_list) - 1}),
@@ -216,8 +216,8 @@ if __name__ == '__main__':
         train(distributed_run_manager, args,
               lambda _run_manager, epoch, is_test: validate(_run_manager, epoch, is_test, **validate_func_dict))
     elif args.task == 'depth':
-        from elastic_nn.training.progressive_shrinking import supporting_elastic_depth
+        from ofa.elastic_nn.training.progressive_shrinking import supporting_elastic_depth
         supporting_elastic_depth(train, distributed_run_manager, args, validate_func_dict)
     else:
-        from elastic_nn.training.progressive_shrinking import supporting_elastic_expand
+        from ofa.elastic_nn.training.progressive_shrinking import supporting_elastic_expand
         supporting_elastic_expand(train, distributed_run_manager, args, validate_func_dict)

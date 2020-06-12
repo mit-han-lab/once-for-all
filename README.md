@@ -31,7 +31,7 @@
 """ OFA Specialized Networks.
 Example: net, image_size = ofa_specialized('flops@595M_top1@80.0_finetune@75', pretrained=True)
 """ 
-from model_zoo import ofa_specialized
+from ofa.model_zoo import ofa_specialized
 net, image_size = ofa_specialized(net_id, pretrained=True)
 ```
 If the above scripts failed to download, you download it manually from [Google Drive](https://drive.google.com/drive/folders/1ez-t_DAHDet2fqe9TZUTJmvrU-AwofAt?usp=sharing) and put them under $HOME/.torch/ofa_specialized/.
@@ -188,7 +188,7 @@ If the above scripts failed to download, you download it manually from [Google D
 """ OFA Networks.
     Example: ofa_network = ofa_net('ofa_mbv3_d234_e346_k357_w1.0', pretrained=True)
 """ 
-from model_zoo import ofa_net
+from ofa.model_zoo import ofa_net
 ofa_network = ofa_net(net_id, pretrained=True)
     
 # Randomly sample sub-networks from OFA network

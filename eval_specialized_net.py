@@ -13,8 +13,8 @@ import torch.backends.cudnn as cudnn
 import torch.utils.data
 from torchvision import transforms, datasets
 
-from utils import AverageMeter, accuracy
-from model_zoo import ofa_specialized
+from ofa.utils import AverageMeter, accuracy
+from ofa.model_zoo import ofa_specialized
 
 specialized_network_list = [
     ################# FLOPs #################

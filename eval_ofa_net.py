@@ -6,10 +6,10 @@ import os
 import torch
 import argparse
 
-from imagenet_codebase.data_providers.imagenet import ImagenetDataProvider
-from imagenet_codebase.run_manager import ImagenetRunConfig
-from imagenet_codebase.run_manager.run_manager import RunManager
-from model_zoo import ofa_net
+from ofa.imagenet_codebase.data_providers.imagenet import ImagenetDataProvider
+from ofa.imagenet_codebase.run_manager import ImagenetRunConfig
+from ofa.imagenet_codebase.run_manager import RunManager
+from ofa.model_zoo import ofa_net
 
 
 parser = argparse.ArgumentParser()
