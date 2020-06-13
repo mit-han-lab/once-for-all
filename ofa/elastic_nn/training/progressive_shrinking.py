@@ -13,9 +13,9 @@ import torch
 import torch.nn.functional as F
 import horovod.torch as hvd
 
-from ofa.imagenet_codebase.utils import DistributedMetric
-from ofa.imagenet_codebase.utils import accuracy, list_mean, cross_entropy_loss_with_soft_target, subset_mean, \
-    AverageMeter, int2list, download_url
+from ofa.utils import accuracy, AverageMeter, download_url
+from ofa.imagenet_codebase.utils import DistributedMetric, list_mean, cross_entropy_loss_with_soft_target, \
+    subset_mean, int2list
 from ofa.imagenet_codebase.data_providers.base_provider import MyRandomResizedCrop
 from ofa.imagenet_codebase.run_manager.distributed_run_manager import DistributedRunManager
 

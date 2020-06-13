@@ -6,8 +6,10 @@ import json
 
 import torch.nn as nn
 # from layers import *
-from ofa.layers import MyModule, ZeroLayer, set_layer_from_config, MBInvertedConvLayer, ConvLayer, IdentityLayer, LinearLayer
-from ofa.imagenet_codebase.utils import download_url, make_divisible, MyNetwork, int2list
+from ofa.layers import MyModule, ZeroLayer, set_layer_from_config, MBInvertedConvLayer, ConvLayer, IdentityLayer, \
+    LinearLayer
+from ofa.utils import download_url
+from ofa.imagenet_codebase.utils import make_divisible, MyNetwork, int2list
 
 
 def proxyless_base(net_config=None, n_classes=None, bn_param=None, dropout_rate=None,

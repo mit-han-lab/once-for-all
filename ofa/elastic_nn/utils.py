@@ -8,7 +8,8 @@ import torch.nn.functional as F
 import torch.nn as nn
 import torch
 
-from ofa.imagenet_codebase.utils import AverageMeter, get_net_device, DistributedTensor
+from ofa.utils import AverageMeter
+from ofa.imagenet_codebase.utils import get_net_device, DistributedTensor
 from ofa.elastic_nn.modules.dynamic_op import DynamicBatchNorm2d
 
 
