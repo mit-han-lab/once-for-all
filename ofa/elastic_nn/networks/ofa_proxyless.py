@@ -316,6 +316,54 @@ class OFAProxylessNASNets(ProxylessNASNets):
         _subnet = ProxylessNASNets(first_conv, blocks, feature_mix_layer, classifier)
         _subnet.set_bn_param(**self.get_bn_param())
         return _subnet
+
+    def get_active_net_config(self):
+        first_conv_config = self.first_conv.config
+        first_block_config = self.blocks[0].config
+        if isinstance(self.first_conv, DynamicConvLayer):
+            raise NotImplementedError
+        feature_mix_layer_config = self.feature_mix_layer.config
+        if isinstance(self.feature_mix_layer, DynamicConvLayer):
+            raise NotImplementedError
+        classifier_config = self.classifier.config
+        if isinstance(self.classifier, DynamicLinearLayer):
+            raise NotImplementedError
+
+        block_config_list = [first_block_config]
+        input_channel = first_block_config['mobile_inverted_conv']['out_channels']
+        for stage_id, block_idx in enumerate(self.block_group_info):
+            depth = self.runtime_depth[stage_id]
+            active_idx = block_idx[:depth]
+            stage_blocks = []
+            for idx in active_idx:
+                middle_channel = make_divisible(round(input_channel *
+                                                      self.blocks[idx].mobile_inverted_conv.active_expand_ratio), 8)
+                stage_blocks.append({
+                    'name': MobileInvertedResidualBlock.__name__,
+                    'mobile_inverted_conv': {
+                        'name': MBInvertedConvLayer.__name__,
+                        'in_channels': input_channel,
+                        'out_channels': self.blocks[idx].mobile_inverted_conv.active_out_channel,
+                        'kernel_size': self.blocks[idx].mobile_inverted_conv.active_kernel_size,
+                        'stride': self.blocks[idx].mobile_inverted_conv.stride,
+                        'expand_ratio': self.blocks[idx].mobile_inverted_conv.active_expand_ratio,
+                        'mid_channels': middle_channel,
+                        'act_func': self.blocks[idx].mobile_inverted_conv.act_func,
+                        'use_se': self.blocks[idx].mobile_inverted_conv.use_se,
+                    },
+                    'shortcut': self.blocks[idx].shortcut.config if self.blocks[idx].shortcut is not None else None,
+                })
+                input_channel = self.blocks[idx].mobile_inverted_conv.active_out_channel
+            block_config_list += stage_blocks
+
+        return {
+            'name': ProxylessNASNets.__name__,
+            'bn': self.get_bn_param(),
+            'first_conv': first_conv_config,
+            'blocks': block_config_list,
+            'feature_mix_layer': feature_mix_layer_config,
+            'classifier': classifier_config,
+        }
     
     """ Width Related Methods """
     
