@@ -228,11 +228,11 @@ def supporting_elastic_depth(train_func, run_manager, args, validate_func_dict):
     validate_func_dict['depth_list'] = sorted(dynamic_net.depth_list)
 
     if args.phase == 1:
-        model_path = download_url('https://file.lzhu.me/projects/OnceForAll/ofa_checkpoints/ofa_D4_E6_K357',
+        model_path = download_url('https://hanlab.mit.edu/files/OnceForAll/ofa_checkpoints/ofa_D4_E6_K357',
                                   model_dir='.torch/ofa_checkpoints/%d' % hvd.rank())
         load_models(run_manager, dynamic_net, model_path=model_path)
     else:
-        model_path = download_url('https://file.lzhu.me/projects/OnceForAll/ofa_checkpoints/ofa_D34_E6_K357',
+        model_path = download_url('https://hanlab.mit.edu/files/OnceForAll/ofa_checkpoints/ofa_D34_E6_K357',
                                   model_dir='.torch/ofa_checkpoints/%d' % hvd.rank())
         load_models(run_manager, dynamic_net, model_path=model_path)
     # validate after loading weights
@@ -291,11 +291,11 @@ def supporting_elastic_expand(train_func, run_manager, args, validate_func_dict)
     validate_func_dict['expand_ratio_list'] = sorted(dynamic_net.expand_ratio_list)
 
     if args.phase == 1:
-        model_path = download_url('https://file.lzhu.me/projects/OnceForAll/ofa_checkpoints/ofa_D234_E6_K357',
+        model_path = download_url('https://hanlab.mit.edu/files/OnceForAll/ofa_checkpoints/ofa_D234_E6_K357',
                                   model_dir='.torch/ofa_checkpoints/%d' % hvd.rank())
         load_models(run_manager, dynamic_net, model_path=model_path)
     else:
-        model_path = download_url('https://file.lzhu.me/projects/OnceForAll/ofa_checkpoints/ofa_D234_E46_K357',
+        model_path = download_url('https://hanlab.mit.edu/files/OnceForAll/ofa_checkpoints/ofa_D234_E46_K357',
                                   model_dir='.torch/ofa_checkpoints/%d' % hvd.rank())
         load_models(run_manager, dynamic_net, model_path=model_path)
     dynamic_net.re_organize_middle_weights()

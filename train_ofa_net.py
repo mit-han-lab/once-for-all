@@ -123,7 +123,7 @@ if __name__ == '__main__':
     torch.cuda.set_device(hvd.local_rank())
 
     args.teacher_path = download_url(
-        'https://file.lzhu.me/projects/OnceForAll/ofa_checkpoints/ofa_D4_E6_K7',
+        'https://hanlab.mit.edu/files/OnceForAll/ofa_checkpoints/ofa_D4_E6_K7',
         model_dir='.torch/ofa_checkpoints/%d' % hvd.rank()
     )
 
@@ -208,7 +208,7 @@ if __name__ == '__main__':
     if args.task == 'kernel':
         validate_func_dict['ks_list'] = sorted(args.ks_list)
         if distributed_run_manager.start_epoch == 0:
-            model_path = download_url('https://file.lzhu.me/projects/OnceForAll/ofa_checkpoints/ofa_D4_E6_K7',
+            model_path = download_url('https://hanlab.mit.edu/files/OnceForAll/ofa_checkpoints/ofa_D4_E6_K7',
                                       model_dir='.torch/ofa_checkpoints/%d' % hvd.rank())
             load_models(distributed_run_manager, distributed_run_manager.net, model_path=model_path)
             distributed_run_manager.write_log('%.3f\t%.3f\t%.3f\t%s' %

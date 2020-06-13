@@ -189,7 +189,7 @@ class ProxylessNASNets(MyNetwork):
 
 
 def ofa_specialized(net_id, pretrained=True):
-    url_base = 'https://file.lzhu.me/projects/OnceForAll/ofa_specialized/'  # 'https://hanlab.mit.edu/files/OnceForAll/ofa_specialized/'
+    url_base = 'https://hanlab.mit.edu/files/OnceForAll/ofa_specialized/'
     net_config = json.load(open(
         download_url(url_base + net_id + '/net.config', model_dir='.torch/ofa_specialized/%s/' % net_id)
     ))
@@ -234,7 +234,7 @@ def ofa_net(net_id, pretrained=True):
         raise ValueError('Not supported: %s' % net_id)
 
     if pretrained:
-        url_base = 'https://file.lzhu.me/projects/OnceForAll/ofa_nets/'  # 'https://hanlab.mit.edu/files/OnceForAll/ofa_nets/'
+        url_base = 'https://hanlab.mit.edu/files/OnceForAll/ofa_nets/'
         init = torch.load(
             download_url(url_base + net_id, model_dir='.torch/ofa_nets'),
             map_location='cpu')['state_dict']
