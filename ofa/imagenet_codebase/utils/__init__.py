@@ -13,7 +13,7 @@ except ImportError:
     # import numpy as hvd
 
 import torch
-# from ofa.utils import *
+from ofa.utils import *
 # from ofa.imagenet_codebase.utils.pytorch_utils import *
 
 from .pytorch_modules import *
