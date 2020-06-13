@@ -20,9 +20,6 @@ from .pytorch_utils import *
 from .my_modules import *
 from .flops_counter import *
 
-# TODO: remove this dirty fix
-from ..utils import *
-
 
 def get_split_list(in_dim, child_num):
     in_dim_list = [in_dim // child_num] * child_num

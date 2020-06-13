@@ -7,7 +7,8 @@ from torch.nn.parameter import Parameter
 import torch.nn as nn
 import torch
 
-from ofa.imagenet_codebase.utils import get_same_padding, sub_filter_start_end, make_divisible, SEModule
+from ofa.utils import get_same_padding
+from ofa.imagenet_codebase.utils import sub_filter_start_end, make_divisible, SEModule
 
 
 class DynamicSeparableConv2d(nn.Module):
