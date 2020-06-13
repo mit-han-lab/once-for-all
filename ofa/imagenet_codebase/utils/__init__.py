@@ -13,13 +13,15 @@ except ImportError:
     # import numpy as hvd
 
 import torch
-from ofa.utils import *
 # from ofa.imagenet_codebase.utils.pytorch_utils import *
 
 from .pytorch_modules import *
 from .pytorch_utils import *
 from .my_modules import *
 from .flops_counter import *
+
+# TODO: remove this dirty fix
+from ..utils import *
 
 
 def get_split_list(in_dim, child_num):
