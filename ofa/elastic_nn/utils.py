@@ -3,6 +3,7 @@
 # International Conference on Learning Representations (ICLR), 2020.
 
 import copy
+from tqdm import tqdm
 
 import torch.nn.functional as F
 import torch.nn as nn
@@ -53,7 +54,7 @@ def set_running_statistics(model, data_loader, distributed=False):
     
     with torch.no_grad():
         DynamicBatchNorm2d.SET_RUNNING_STATISTICS = True
-        for images, labels in data_loader:
+        for images, labels in tqdm(data_loader, desc='Calib BN'):
             images = images.to(get_net_device(forward_model))
             forward_model(images)
         DynamicBatchNorm2d.SET_RUNNING_STATISTICS = False
