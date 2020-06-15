@@ -1,0 +1,384 @@
+AvgPool2D-input:7x7x1152-output:1x1x1152:
+  count: 497
+  mean: 0.015283702213279684
+  std: 0.0009398381511501194
+Conv-input:204x204x3-output:102x102x24:
+  count: 500
+  mean: 0.8244900000000001
+  std: 0.015163571479041477
+Conv_1-input:7x7x192-output:7x7x1152:
+  count: 500
+  mean: 0.6966740000000002
+  std: 0.02047299987788793
+Conv_2-input:1x1x1152-output:1x1x1536:
+  count: 500
+  mean: 0.7601239999999999
+  std: 0.10175573017771529
+Logits-input:1x1x1536-output:1000:
+  count: 500
+  mean: 0.666762
+  std: 0.07781275831121781
+expanded_conv-input:102x102x24-output:102x102x24-expand:24-kernel:3-stride:1-idskip:1-se:0-hs:0:
+  count: 500
+  mean: 1.4458419999999998
+  std: 0.023000718162700915
+expanded_conv-input:102x102x24-output:51x51x32-expand:144-kernel:3-stride:2-idskip:0-se:0-hs:0:
+  count: 54
+  mean: 4.0071666666666665
+  std: 0.09352673414591148
+expanded_conv-input:102x102x24-output:51x51x32-expand:144-kernel:5-stride:2-idskip:0-se:0-hs:0:
+  count: 63
+  mean: 5.5013015873015885
+  std: 0.15630674308547418
+expanded_conv-input:102x102x24-output:51x51x32-expand:144-kernel:7-stride:2-idskip:0-se:0-hs:0:
+  count: 54
+  mean: 7.667
+  std: 0.2869384370673728
+expanded_conv-input:102x102x24-output:51x51x32-expand:72-kernel:3-stride:2-idskip:0-se:0-hs:0:
+  count: 56
+  mean: 2.040482142857143
+  std: 0.03465080450077629
+expanded_conv-input:102x102x24-output:51x51x32-expand:72-kernel:5-stride:2-idskip:0-se:0-hs:0:
+  count: 53
+  mean: 2.8703207547169813
+  std: 0.05976961226554681
+expanded_conv-input:102x102x24-output:51x51x32-expand:72-kernel:7-stride:2-idskip:0-se:0-hs:0:
+  count: 58
+  mean: 4.089879310344828
+  std: 0.10656519416029289
+expanded_conv-input:102x102x24-output:51x51x32-expand:96-kernel:3-stride:2-idskip:0-se:0-hs:0:
+  count: 59
+  mean: 2.594186440677966
+  std: 0.04302402741246866
+expanded_conv-input:102x102x24-output:51x51x32-expand:96-kernel:5-stride:2-idskip:0-se:0-hs:0:
+  count: 52
+  mean: 3.614576923076924
+  std: 0.09722087187941733
+expanded_conv-input:102x102x24-output:51x51x32-expand:96-kernel:7-stride:2-idskip:0-se:0-hs:0:
+  count: 51
+  mean: 5.056333333333333
+  std: 0.2026181249917277
+expanded_conv-input:13x13x136-output:13x13x136-expand:408-kernel:3-stride:1-idskip:1-se:1-hs:1:
+  count: 101
+  mean: 1.4380099009900988
+  std: 0.02806551566063107
+expanded_conv-input:13x13x136-output:13x13x136-expand:408-kernel:5-stride:1-idskip:1-se:1-hs:1:
+  count: 102
+  mean: 1.6622352941176468
+  std: 0.03882872811301292
+expanded_conv-input:13x13x136-output:13x13x136-expand:408-kernel:7-stride:1-idskip:1-se:1-hs:1:
+  count: 107
+  mean: 1.9470280373831779
+  std: 0.04489686164831299
+expanded_conv-input:13x13x136-output:13x13x136-expand:544-kernel:3-stride:1-idskip:1-se:1-hs:1:
+  count: 116
+  mean: 1.9279913793103447
+  std: 0.025535133231138346
+expanded_conv-input:13x13x136-output:13x13x136-expand:544-kernel:5-stride:1-idskip:1-se:1-hs:1:
+  count: 121
+  mean: 2.206570247933884
+  std: 0.05041248475275539
+expanded_conv-input:13x13x136-output:13x13x136-expand:544-kernel:7-stride:1-idskip:1-se:1-hs:1:
+  count: 97
+  mean: 2.549309278350515
+  std: 0.05417161748292493
+expanded_conv-input:13x13x136-output:13x13x136-expand:816-kernel:3-stride:1-idskip:1-se:1-hs:1:
+  count: 103
+  mean: 2.932223300970874
+  std: 0.05351253043330538
+expanded_conv-input:13x13x136-output:13x13x136-expand:816-kernel:5-stride:1-idskip:1-se:1-hs:1:
+  count: 108
+  mean: 3.3480740740740744
+  std: 0.06741657446823851
+expanded_conv-input:13x13x136-output:13x13x136-expand:816-kernel:7-stride:1-idskip:1-se:1-hs:1:
+  count: 104
+  mean: 3.9299615384615385
+  std: 0.12938500411539514
+expanded_conv-input:13x13x136-output:7x7x192-expand:408-kernel:3-stride:2-idskip:0-se:1-hs:1:
+  count: 53
+  mean: 0.9782075471698113
+  std: 0.019268077510866417
+expanded_conv-input:13x13x136-output:7x7x192-expand:408-kernel:5-stride:2-idskip:0-se:1-hs:1:
+  count: 52
+  mean: 1.0441346153846154
+  std: 0.02166176074787608
+expanded_conv-input:13x13x136-output:7x7x192-expand:408-kernel:7-stride:2-idskip:0-se:1-hs:1:
+  count: 52
+  mean: 1.1277307692307692
+  std: 0.029142300331975398
+expanded_conv-input:13x13x136-output:7x7x192-expand:544-kernel:3-stride:2-idskip:0-se:1-hs:1:
+  count: 69
+  mean: 1.3251884057971013
+  std: 0.026327522031119776
+expanded_conv-input:13x13x136-output:7x7x192-expand:544-kernel:5-stride:2-idskip:0-se:1-hs:1:
+  count: 38
+  mean: 1.4134473684210527
+  std: 0.020552496798533725
+expanded_conv-input:13x13x136-output:7x7x192-expand:544-kernel:7-stride:2-idskip:0-se:1-hs:1:
+  count: 48
+  mean: 1.5152708333333333
+  std: 0.0315348613860738
+expanded_conv-input:13x13x136-output:7x7x192-expand:816-kernel:3-stride:2-idskip:0-se:1-hs:1:
+  count: 61
+  mean: 2.0302459016393444
+  std: 0.03558718489997599
+expanded_conv-input:13x13x136-output:7x7x192-expand:816-kernel:5-stride:2-idskip:0-se:1-hs:1:
+  count: 63
+  mean: 2.1694920634920636
+  std: 0.05787174462465026
+expanded_conv-input:13x13x136-output:7x7x192-expand:816-kernel:7-stride:2-idskip:0-se:1-hs:1:
+  count: 64
+  mean: 2.3244375
+  std: 0.04847546898947958
+expanded_conv-input:13x13x96-output:13x13x136-expand:288-kernel:3-stride:1-idskip:0-se:1-hs:1:
+  count: 52
+  mean: 0.9081538461538462
+  std: 0.00976923076923076
+expanded_conv-input:13x13x96-output:13x13x136-expand:288-kernel:5-stride:1-idskip:0-se:1-hs:1:
+  count: 67
+  mean: 1.0518208955223882
+  std: 0.027184787983456898
+expanded_conv-input:13x13x96-output:13x13x136-expand:288-kernel:7-stride:1-idskip:0-se:1-hs:1:
+  count: 52
+  mean: 1.235923076923077
+  std: 0.02177670434365601
+expanded_conv-input:13x13x96-output:13x13x136-expand:384-kernel:3-stride:1-idskip:0-se:1-hs:1:
+  count: 59
+  mean: 1.2226101694915255
+  std: 0.028495623778881277
+expanded_conv-input:13x13x96-output:13x13x136-expand:384-kernel:5-stride:1-idskip:0-se:1-hs:1:
+  count: 60
+  mean: 1.41945
+  std: 0.02354033772060205
+expanded_conv-input:13x13x96-output:13x13x136-expand:384-kernel:7-stride:1-idskip:0-se:1-hs:1:
+  count: 57
+  mean: 1.678280701754386
+  std: 0.03908683737075558
+expanded_conv-input:13x13x96-output:13x13x136-expand:576-kernel:3-stride:1-idskip:0-se:1-hs:1:
+  count: 55
+  mean: 1.8478000000000006
+  std: 0.022046562296442234
+expanded_conv-input:13x13x96-output:13x13x136-expand:576-kernel:5-stride:1-idskip:0-se:1-hs:1:
+  count: 43
+  mean: 2.145651162790698
+  std: 0.04667696195895447
+expanded_conv-input:13x13x96-output:13x13x136-expand:576-kernel:7-stride:1-idskip:0-se:1-hs:1:
+  count: 55
+  mean: 2.5328181818181816
+  std: 0.0784337800392131
+expanded_conv-input:13x13x96-output:13x13x96-expand:288-kernel:3-stride:1-idskip:1-se:0-hs:1:
+  count: 118
+  mean: 0.7848559322033898
+  std: 0.015100945881098905
+expanded_conv-input:13x13x96-output:13x13x96-expand:288-kernel:5-stride:1-idskip:1-se:0-hs:1:
+  count: 110
+  mean: 0.9241272727272727
+  std: 0.01882411851897795
+expanded_conv-input:13x13x96-output:13x13x96-expand:288-kernel:7-stride:1-idskip:1-se:0-hs:1:
+  count: 111
+  mean: 1.1096666666666668
+  std: 0.028593558568173888
+expanded_conv-input:13x13x96-output:13x13x96-expand:384-kernel:3-stride:1-idskip:1-se:0-hs:1:
+  count: 118
+  mean: 1.0451694915254237
+  std: 0.019417930332183215
+expanded_conv-input:13x13x96-output:13x13x96-expand:384-kernel:5-stride:1-idskip:1-se:0-hs:1:
+  count: 103
+  mean: 1.2428834951456311
+  std: 0.02503252291156322
+expanded_conv-input:13x13x96-output:13x13x96-expand:384-kernel:7-stride:1-idskip:1-se:0-hs:1:
+  count: 91
+  mean: 1.4962087912087916
+  std: 0.04062438949222189
+expanded_conv-input:13x13x96-output:13x13x96-expand:576-kernel:3-stride:1-idskip:1-se:0-hs:1:
+  count: 123
+  mean: 1.5646422764227639
+  std: 0.016572643773615836
+expanded_conv-input:13x13x96-output:13x13x96-expand:576-kernel:5-stride:1-idskip:1-se:0-hs:1:
+  count: 112
+  mean: 1.8622410714285718
+  std: 0.04548768387779626
+expanded_conv-input:13x13x96-output:13x13x96-expand:576-kernel:7-stride:1-idskip:1-se:0-hs:1:
+  count: 110
+  mean: 2.2465818181818182
+  std: 0.05767595714903959
+expanded_conv-input:26x26x48-output:13x13x96-expand:144-kernel:3-stride:2-idskip:0-se:0-hs:1:
+  count: 66
+  mean: 0.654
+  std: 0.00900504908875621
+expanded_conv-input:26x26x48-output:13x13x96-expand:144-kernel:5-stride:2-idskip:0-se:0-hs:1:
+  count: 55
+  mean: 0.7410181818181818
+  std: 0.01535458582264998
+expanded_conv-input:26x26x48-output:13x13x96-expand:144-kernel:7-stride:2-idskip:0-se:0-hs:1:
+  count: 53
+  mean: 0.8550188679245283
+  std: 0.012047845757547295
+expanded_conv-input:26x26x48-output:13x13x96-expand:192-kernel:3-stride:2-idskip:0-se:0-hs:1:
+  count: 44
+  mean: 0.8749772727272728
+  std: 0.025480374476664857
+expanded_conv-input:26x26x48-output:13x13x96-expand:192-kernel:5-stride:2-idskip:0-se:0-hs:1:
+  count: 64
+  mean: 0.9852968750000001
+  std: 0.01588501621763022
+expanded_conv-input:26x26x48-output:13x13x96-expand:192-kernel:7-stride:2-idskip:0-se:0-hs:1:
+  count: 58
+  mean: 1.1394482758620688
+  std: 0.02144533741929346
+expanded_conv-input:26x26x48-output:13x13x96-expand:288-kernel:3-stride:2-idskip:0-se:0-hs:1:
+  count: 45
+  mean: 1.334111111111111
+  std: 0.025894849099319786
+expanded_conv-input:26x26x48-output:13x13x96-expand:288-kernel:5-stride:2-idskip:0-se:0-hs:1:
+  count: 50
+  mean: 1.4972800000000002
+  std: 0.027628275371437833
+expanded_conv-input:26x26x48-output:13x13x96-expand:288-kernel:7-stride:2-idskip:0-se:0-hs:1:
+  count: 65
+  mean: 1.7264923076923078
+  std: 0.04148405553830683
+expanded_conv-input:26x26x48-output:26x26x48-expand:144-kernel:3-stride:1-idskip:1-se:1-hs:0:
+  count: 98
+  mean: 0.9252346938775509
+  std: 0.017391530322174237
+expanded_conv-input:26x26x48-output:26x26x48-expand:144-kernel:5-stride:1-idskip:1-se:1-hs:0:
+  count: 133
+  mean: 1.2438496240601502
+  std: 0.033780693921433236
+expanded_conv-input:26x26x48-output:26x26x48-expand:144-kernel:7-stride:1-idskip:1-se:1-hs:0:
+  count: 122
+  mean: 1.6798606557377047
+  std: 0.04181640504296788
+expanded_conv-input:26x26x48-output:26x26x48-expand:192-kernel:3-stride:1-idskip:1-se:1-hs:0:
+  count: 94
+  mean: 1.2337127659574467
+  std: 0.01704788146844778
+expanded_conv-input:26x26x48-output:26x26x48-expand:192-kernel:5-stride:1-idskip:1-se:1-hs:0:
+  count: 104
+  mean: 1.6761346153846155
+  std: 0.05080412189749125
+expanded_conv-input:26x26x48-output:26x26x48-expand:192-kernel:7-stride:1-idskip:1-se:1-hs:0:
+  count: 115
+  mean: 2.278782608695652
+  std: 0.07875242247301745
+expanded_conv-input:26x26x48-output:26x26x48-expand:288-kernel:3-stride:1-idskip:1-se:1-hs:0:
+  count: 110
+  mean: 1.8554090909090903
+  std: 0.022408316416636494
+expanded_conv-input:26x26x48-output:26x26x48-expand:288-kernel:5-stride:1-idskip:1-se:1-hs:0:
+  count: 110
+  mean: 2.496290909090909
+  std: 0.06464284330134815
+expanded_conv-input:26x26x48-output:26x26x48-expand:288-kernel:7-stride:1-idskip:1-se:1-hs:0:
+  count: 108
+  mean: 3.3927962962962965
+  std: 0.11514618400097454
+expanded_conv-input:51x51x32-output:26x26x48-expand:128-kernel:3-stride:2-idskip:0-se:1-hs:0:
+  count: 72
+  mean: 1.1986250000000003
+  std: 0.013564084008881682
+expanded_conv-input:51x51x32-output:26x26x48-expand:128-kernel:5-stride:2-idskip:0-se:1-hs:0:
+  count: 48
+  mean: 1.5012291666666666
+  std: 0.026643666839211304
+expanded_conv-input:51x51x32-output:26x26x48-expand:128-kernel:7-stride:2-idskip:0-se:1-hs:0:
+  count: 54
+  mean: 1.943037037037037
+  std: 0.06463056350805704
+expanded_conv-input:51x51x32-output:26x26x48-expand:192-kernel:3-stride:2-idskip:0-se:1-hs:0:
+  count: 52
+  mean: 1.865788461538462
+  std: 0.031804895933259136
+expanded_conv-input:51x51x32-output:26x26x48-expand:192-kernel:5-stride:2-idskip:0-se:1-hs:0:
+  count: 57
+  mean: 2.38859649122807
+  std: 0.06649175114361672
+expanded_conv-input:51x51x32-output:26x26x48-expand:192-kernel:7-stride:2-idskip:0-se:1-hs:0:
+  count: 50
+  mean: 3.0688799999999996
+  std: 0.10123193962381642
+expanded_conv-input:51x51x32-output:26x26x48-expand:96-kernel:3-stride:2-idskip:0-se:1-hs:0:
+  count: 57
+  mean: 0.9182456140350878
+  std: 0.02047101562608246
+expanded_conv-input:51x51x32-output:26x26x48-expand:96-kernel:5-stride:2-idskip:0-se:1-hs:0:
+  count: 56
+  mean: 1.1470714285714283
+  std: 0.02616490093266791
+expanded_conv-input:51x51x32-output:26x26x48-expand:96-kernel:7-stride:2-idskip:0-se:1-hs:0:
+  count: 54
+  mean: 1.4725740740740743
+  std: 0.043980888884896645
+expanded_conv-input:51x51x32-output:51x51x32-expand:128-kernel:3-stride:1-idskip:1-se:0-hs:0:
+  count: 108
+  mean: 2.0873518518518517
+  std: 0.050376235361162466
+expanded_conv-input:51x51x32-output:51x51x32-expand:128-kernel:5-stride:1-idskip:1-se:0-hs:0:
+  count: 94
+  mean: 3.2609893617021286
+  std: 0.09108909534670945
+expanded_conv-input:51x51x32-output:51x51x32-expand:128-kernel:7-stride:1-idskip:1-se:0-hs:0:
+  count: 123
+  mean: 4.937829268292682
+  std: 0.16219077932935835
+expanded_conv-input:51x51x32-output:51x51x32-expand:192-kernel:3-stride:1-idskip:1-se:0-hs:0:
+  count: 95
+  mean: 3.1795789473684204
+  std: 0.07564801857736553
+expanded_conv-input:51x51x32-output:51x51x32-expand:192-kernel:5-stride:1-idskip:1-se:0-hs:0:
+  count: 105
+  mean: 4.964933333333333
+  std: 0.16178535260480256
+expanded_conv-input:51x51x32-output:51x51x32-expand:192-kernel:7-stride:1-idskip:1-se:0-hs:0:
+  count: 112
+  mean: 7.552321428571427
+  std: 0.2629934889975453
+expanded_conv-input:51x51x32-output:51x51x32-expand:96-kernel:3-stride:1-idskip:1-se:0-hs:0:
+  count: 119
+  mean: 1.5821176470588236
+  std: 0.04297569695673879
+expanded_conv-input:51x51x32-output:51x51x32-expand:96-kernel:5-stride:1-idskip:1-se:0-hs:0:
+  count: 119
+  mean: 2.466058823529411
+  std: 0.07057950926457111
+expanded_conv-input:51x51x32-output:51x51x32-expand:96-kernel:7-stride:1-idskip:1-se:0-hs:0:
+  count: 111
+  mean: 3.775666666666666
+  std: 0.14320113325167705
+expanded_conv-input:7x7x192-output:7x7x192-expand:1152-kernel:3-stride:1-idskip:1-se:1-hs:1:
+  count: 108
+  mean: 2.0606203703703705
+  std: 0.048422469071433515
+expanded_conv-input:7x7x192-output:7x7x192-expand:1152-kernel:5-stride:1-idskip:1-se:1-hs:1:
+  count: 125
+  mean: 2.2175599999999998
+  std: 0.05384249622742244
+expanded_conv-input:7x7x192-output:7x7x192-expand:1152-kernel:7-stride:1-idskip:1-se:1-hs:1:
+  count: 107
+  mean: 2.388803738317757
+  std: 0.0674685720193042
+expanded_conv-input:7x7x192-output:7x7x192-expand:576-kernel:3-stride:1-idskip:1-se:1-hs:1:
+  count: 105
+  mean: 0.9590190476190477
+  std: 0.02489826192150803
+expanded_conv-input:7x7x192-output:7x7x192-expand:576-kernel:5-stride:1-idskip:1-se:1-hs:1:
+  count: 98
+  mean: 1.0276530612244896
+  std: 0.026374501461896828
+expanded_conv-input:7x7x192-output:7x7x192-expand:576-kernel:7-stride:1-idskip:1-se:1-hs:1:
+  count: 108
+  mean: 1.1074166666666667
+  std: 0.028202352476082302
+expanded_conv-input:7x7x192-output:7x7x192-expand:768-kernel:3-stride:1-idskip:1-se:1-hs:1:
+  count: 97
+  mean: 1.3174948453608246
+  std: 0.030734688992249678
+expanded_conv-input:7x7x192-output:7x7x192-expand:768-kernel:5-stride:1-idskip:1-se:1-hs:1:
+  count: 136
+  mean: 1.4147573529411763
+  std: 0.03760641691245098
+expanded_conv-input:7x7x192-output:7x7x192-expand:768-kernel:7-stride:1-idskip:1-se:1-hs:1:
+  count: 107
+  mean: 1.5316261682242989
+  std: 0.038494937976355774
