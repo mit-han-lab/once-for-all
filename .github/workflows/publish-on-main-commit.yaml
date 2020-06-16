@@ -29,7 +29,6 @@ jobs:
         TWINE_USERNAME: ${{ secrets.TWINE_USERNAME }}
         TWINE_PASSWORD: ${{ secrets.TWINE_PASSWORD }}
       run: |
-        echo "There has been more than one week since last update, start to build."
         python setup.py bdist_wheel
         twine check dist/*
         twine upload dist/*
