@@ -12,7 +12,7 @@
 
 **[News]** The [hands-on tutorial](https://github.com/mit-han-lab/once-for-all/tree/master/tutorial) of OFA is released! 
 
-**[News]** OFA is available via pip! Run **pip install ofa** to install the whole OFA codebase. 
+**[News]** OFA is available via pip! Run **[pip install ofa]** to install the whole OFA codebase. 
 
 **[News]** Fisrt place in the 4th [Low-Power Computer Vision Challenge](https://lpcv.ai/competitions/2019), both classification and detection track.
 
