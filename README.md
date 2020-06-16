@@ -10,9 +10,13 @@
 }
 ```
 
-## News
-- Fisrt place in the 4th [Low-Power Computer Vision Challenge](https://lpcv.ai/competitions/2019), both classification and detection track.
-- First place in the 3rd [Low-Power Computer Vision Challenge](https://lpcv.ai/competitions/2019), DSP track at ICCV’19 using the Once-for-all Network.
+**[News]** The [hands-on tutorial](https://github.com/mit-han-lab/once-for-all/tree/master/tutorial) of OFA is released! 
+
+**[News]** OFA is available via pip! Run **pip install ofa** to install the whole OFA codebase. 
+
+**[News]** Fisrt place in the 4th [Low-Power Computer Vision Challenge](https://lpcv.ai/competitions/2019), both classification and detection track.
+
+**[News]** First place in the 3rd [Low-Power Computer Vision Challenge](https://lpcv.ai/competitions/2019), DSP track at ICCV’19 using the Once-for-all Network.
 
 ## Train once, specialize for many deployment scenarios
 ![](figures/overview.png)
@@ -221,6 +225,11 @@ horovodrun -np 32 -H <server1_ip>:8,<server2_ip>:8,<server3_ip>:8,<server4_ip>:8
 ## Introduction Video
 
 [![Watch the video](figures/video_figure.png)](https://www.youtube.com/watch?v=a_OeT8MXzWI&feature=youtu.be)
+
+## Hands-on Tutorial Video
+
+[![Watch the video](figures/ofa-tutorial.jpg)](https://www.youtube.com/watch?v=wrsid5tvuSM)
+
 
 ## Requirement
 * Python 3.6
