@@ -26,7 +26,7 @@ readme = '''
 
 ## Check our [GitHub](https://github.com/mit-han-lab/once-for-all) for more details.
 '''
-VERSION = '0.0.3'
+VERSION = '0.0.4'
 
 requirements = [
     'torch',
