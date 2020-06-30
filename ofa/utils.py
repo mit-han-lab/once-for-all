@@ -174,6 +174,7 @@ class MyNetwork(MyModule):
 def download_url(url, model_dir='~/.torch/', overwrite=False):
     target_dir = url.split('/')[-1]
     model_dir = os.path.expanduser(model_dir)
+    os.makedirs(model_dir, exist_ok=True)
     try:
         with FileLock(os.path.join(model_dir, "download.lock")) as lock:
             if not os.path.exists(model_dir):
