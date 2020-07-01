@@ -1,5 +1,10 @@
 # Hands-on Tutorial of Once-for-All Network [[youtube]](https://www.youtube.com/watch?v=wrsid5tvuSM), [[bilibili]](https://www.bilibili.com/video/BV1oK411p797/)
 
+<p class="aligncenter">
+    <img src="https://camo.githubusercontent.com/52feade06f2fecbf006889a904d221e6a730c194/68747470733a2f2f636f6c61622e72657365617263682e676f6f676c652e636f6d2f6173736574732f636f6c61622d62616467652e737667" alt="Open In Colab" data-canonical-src="https://colab.research.google.com/assets/colab-badge.svg"> 
+</p>
+
+
 This is a hands-on tutorial for **Once for All: Train One Network and Specialize it for Efficient Deployment** [[arXiv]](https://arxiv.org/abs/1908.09791).
 
 ```bibtex

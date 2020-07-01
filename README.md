@@ -10,7 +10,8 @@
 }
 ```
 
-**[News]** The [hands-on tutorial](https://github.com/mit-han-lab/once-for-all/tree/master/tutorial) of OFA is released! 
+**[News]** The [hands-on tutorial](https://github.com/mit-han-lab/once-for-all/tree/master/tutorial) of OFA is released! ![https://colab.research.google.com/github/mit-han-lab/once-for-all/blob/master/tutorial/ofa.ipynb](https://colab.research.google.com/assets/colab-badge.svg)
+
 
 **[News]** OFA is available via pip! Run **```pip install ofa```** to install the whole OFA codebase. 
 
