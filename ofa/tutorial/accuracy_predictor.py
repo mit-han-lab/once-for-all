@@ -3,6 +3,7 @@ import torch
 
 import copy
 
+from ofa.utils import download_url
 
 # Helper for constructing the one-hot vectors.
 def construct_maps(keys):
@@ -34,11 +35,13 @@ class AccuracyPredictor:
         )
         if pretrained:
             # load pretrained model
+            fname = download_url("https://hanlab.mit.edu/files/OnceForAll/tutorial/acc_predictor.pth")
             self.model.load_state_dict(
-                torch.load('checkpoints/acc_predictor.pth', map_location=torch.device('cpu'))
+                torch.load(fname, map_location=torch.device('cpu'))
             )
         self.model = self.model.to(self.device)
 
+    # TODO: merge it with serialization utils.
     @torch.no_grad()
     def predict_accuracy(self, population):
         all_feats = []
