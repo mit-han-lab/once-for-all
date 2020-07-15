@@ -188,6 +188,8 @@ def download_url(url, model_dir='~/.torch/', overwrite=False):
                 # If fail, then ensure the lock is removed so download can be executed next time.
                 print("Failed to download from url %s" % url + "\n" + str(e) + "\n")
                 return str(e)
+            
+    return filepath
 
 
 
