@@ -2,15 +2,12 @@
 # Han Cai, Chuang Gan, Tianzhe Wang, Zhekai Zhang, Song Han
 # International Conference on Learning Representations (ICLR), 2020.
 
-"""
-    Require pwytorch 1.0.0
-"""
 
 import random
 import torch
 import torch.multiprocessing as multiprocessing
-from torch._C import _set_worker_signal_handlers, _update_worker_pids, \
-    _remove_worker_pids, _error_if_any_worker_fails
+from torch._C import _set_worker_signal_handlers
+from torch.utils.data import _utils
 from torch.utils.data import SequentialSampler, RandomSampler, BatchSampler
 import signal
 from torch._six import container_abcs
@@ -586,8 +583,8 @@ class _DataLoaderIter(object):
             else:
                 self.data_queue = self.worker_result_queue
 
-            _update_worker_pids(id(self), tuple(w.pid for w in self.workers))
-            _set_SIGCHLD_handler()
+            _utils.signal_handling._set_worker_pids(id(self), tuple(w.pid for w in self.workers))
+            _utils.signal_handling._set_SIGCHLD_handler()
             self.worker_pids_set = True
 
             # prime the prefetch loop
