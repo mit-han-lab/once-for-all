@@ -232,8 +232,8 @@ horovodrun -np 32 -H <server1_ip>:8,<server2_ip>:8,<server3_ip>:8,<server4_ip>:8
 
 
 ## Requirement
-* Python 3.6
-* Pytorch 1.0.0
+* Python 3.6+
+* Pytorch 1.4.0+
 * ImageNet Dataset 
 * Horovod
 
