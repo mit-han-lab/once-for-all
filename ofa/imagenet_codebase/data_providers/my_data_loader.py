@@ -6,7 +6,7 @@
 import random
 import torch
 import torch.multiprocessing as multiprocessing
-from torch._C import _set_worker_signal_handlers
+from torch._C import _set_worker_signal_handlers, _remove_worker_pids
 from torch.utils.data import _utils
 from torch.utils.data import SequentialSampler, RandomSampler, BatchSampler
 import signal
