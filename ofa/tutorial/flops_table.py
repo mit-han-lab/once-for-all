@@ -2,12 +2,8 @@ import time
 import copy
 import torch
 import torch.nn as nn
-import random
 import numpy as np
-import thop
-from ofa.model_zoo import ofa_net
-from ofa.imagenet_codebase.networks.proxyless_nets import MobileInvertedResidualBlock
-from ofa.imagenet_codebase.modules.layers import *
+from ofa.utils.layers import *
 
 __all__ = ['FLOPsTable']
 
@@ -57,6 +53,7 @@ class FLOPsTable:
 
 	@torch.no_grad()
 	def measure_single_layer_flops(self, layer: nn.Module, input_size: tuple):
+		import thop
 		inputs = torch.randn(*input_size, device=self.device)
 		network = layer.to(self.device)
 		layer.eval()
@@ -75,27 +72,27 @@ class FLOPsTable:
 		# block, input_size, in_channels, out_channels, expand_ratio, kernel_size, stride, act, se
 		configurations = [
 			(ConvLayer, base_resolution, 3, 16, 3, 2, 'relu'),
-			(MobileInvertedResidualBlock, base_resolution // 2, 16, 16, [1], [3, 5, 7], 1, 'relu', False),
-			(MobileInvertedResidualBlock, base_resolution // 2, 16, 24, [3, 4, 6], [3, 5, 7], 2, 'relu', False),
-			(MobileInvertedResidualBlock, base_resolution // 4, 24, 24, [3, 4, 6], [3, 5, 7], 1, 'relu', False),
-			(MobileInvertedResidualBlock, base_resolution // 4, 24, 24, [3, 4, 6], [3, 5, 7], 1, 'relu', False),
-			(MobileInvertedResidualBlock, base_resolution // 4, 24, 24, [3, 4, 6], [3, 5, 7], 1, 'relu', False),
-			(MobileInvertedResidualBlock, base_resolution // 4, 24, 40, [3, 4, 6], [3, 5, 7], 2, 'relu', True),
-			(MobileInvertedResidualBlock, base_resolution // 8, 40, 40, [3, 4, 6], [3, 5, 7], 1, 'relu', True),
-			(MobileInvertedResidualBlock, base_resolution // 8, 40, 40, [3, 4, 6], [3, 5, 7], 1, 'relu', True),
-			(MobileInvertedResidualBlock, base_resolution // 8, 40, 40, [3, 4, 6], [3, 5, 7], 1, 'relu', True),
-			(MobileInvertedResidualBlock, base_resolution // 8, 40, 80, [3, 4, 6], [3, 5, 7], 2, 'h_swish', False),
-			(MobileInvertedResidualBlock, base_resolution // 16, 80, 80, [3, 4, 6], [3, 5, 7], 1, 'h_swish', False),
-			(MobileInvertedResidualBlock, base_resolution // 16, 80, 80, [3, 4, 6], [3, 5, 7], 1, 'h_swish', False),
-			(MobileInvertedResidualBlock, base_resolution // 16, 80, 80, [3, 4, 6], [3, 5, 7], 1, 'h_swish', False),
-			(MobileInvertedResidualBlock, base_resolution // 16, 80, 112, [3, 4, 6], [3, 5, 7], 1, 'h_swish', True),
-			(MobileInvertedResidualBlock, base_resolution // 16, 112, 112, [3, 4, 6], [3, 5, 7], 1, 'h_swish', True),
-			(MobileInvertedResidualBlock, base_resolution // 16, 112, 112, [3, 4, 6], [3, 5, 7], 1, 'h_swish', True),
-			(MobileInvertedResidualBlock, base_resolution // 16, 112, 112, [3, 4, 6], [3, 5, 7], 1, 'h_swish', True),
-			(MobileInvertedResidualBlock, base_resolution // 16, 112, 160, [3, 4, 6], [3, 5, 7], 2, 'h_swish', True),
-			(MobileInvertedResidualBlock, base_resolution // 32, 160, 160, [3, 4, 6], [3, 5, 7], 1, 'h_swish', True),
-			(MobileInvertedResidualBlock, base_resolution // 32, 160, 160, [3, 4, 6], [3, 5, 7], 1, 'h_swish', True),
-			(MobileInvertedResidualBlock, base_resolution // 32, 160, 160, [3, 4, 6], [3, 5, 7], 1, 'h_swish', True),
+			(ResidualBlock, base_resolution // 2, 16, 16, [1], [3, 5, 7], 1, 'relu', False),
+			(ResidualBlock, base_resolution // 2, 16, 24, [3, 4, 6], [3, 5, 7], 2, 'relu', False),
+			(ResidualBlock, base_resolution // 4, 24, 24, [3, 4, 6], [3, 5, 7], 1, 'relu', False),
+			(ResidualBlock, base_resolution // 4, 24, 24, [3, 4, 6], [3, 5, 7], 1, 'relu', False),
+			(ResidualBlock, base_resolution // 4, 24, 24, [3, 4, 6], [3, 5, 7], 1, 'relu', False),
+			(ResidualBlock, base_resolution // 4, 24, 40, [3, 4, 6], [3, 5, 7], 2, 'relu', True),
+			(ResidualBlock, base_resolution // 8, 40, 40, [3, 4, 6], [3, 5, 7], 1, 'relu', True),
+			(ResidualBlock, base_resolution // 8, 40, 40, [3, 4, 6], [3, 5, 7], 1, 'relu', True),
+			(ResidualBlock, base_resolution // 8, 40, 40, [3, 4, 6], [3, 5, 7], 1, 'relu', True),
+			(ResidualBlock, base_resolution // 8, 40, 80, [3, 4, 6], [3, 5, 7], 2, 'h_swish', False),
+			(ResidualBlock, base_resolution // 16, 80, 80, [3, 4, 6], [3, 5, 7], 1, 'h_swish', False),
+			(ResidualBlock, base_resolution // 16, 80, 80, [3, 4, 6], [3, 5, 7], 1, 'h_swish', False),
+			(ResidualBlock, base_resolution // 16, 80, 80, [3, 4, 6], [3, 5, 7], 1, 'h_swish', False),
+			(ResidualBlock, base_resolution // 16, 80, 112, [3, 4, 6], [3, 5, 7], 1, 'h_swish', True),
+			(ResidualBlock, base_resolution // 16, 112, 112, [3, 4, 6], [3, 5, 7], 1, 'h_swish', True),
+			(ResidualBlock, base_resolution // 16, 112, 112, [3, 4, 6], [3, 5, 7], 1, 'h_swish', True),
+			(ResidualBlock, base_resolution // 16, 112, 112, [3, 4, 6], [3, 5, 7], 1, 'h_swish', True),
+			(ResidualBlock, base_resolution // 16, 112, 160, [3, 4, 6], [3, 5, 7], 2, 'h_swish', True),
+			(ResidualBlock, base_resolution // 32, 160, 160, [3, 4, 6], [3, 5, 7], 1, 'h_swish', True),
+			(ResidualBlock, base_resolution // 32, 160, 160, [3, 4, 6], [3, 5, 7], 1, 'h_swish', True),
+			(ResidualBlock, base_resolution // 32, 160, 160, [3, 4, 6], [3, 5, 7], 1, 'h_swish', True),
 			(ConvLayer, base_resolution // 32, 160, 960, 1, 1, 'h_swish'),
 			(ConvLayer, 1, 960, 1280, 1, 1, 'h_swish'),
 			(LinearLayer, 1, 1280, 1000, 1, 1),
@@ -109,14 +106,14 @@ class FLOPsTable:
 		for layer_idx in range(len(configurations)):
 			config = configurations[layer_idx]
 			op_type = config[0]
-			if op_type == MobileInvertedResidualBlock:
+			if op_type == ResidualBlock:
 				_, input_size, in_channels, out_channels, expand_list, ks_list, stride, act, se = config
 				in_channels = int(round(in_channels * self.multiplier))
 				out_channels = int(round(out_channels * self.multiplier))
 				template_config = {
-					'name': MobileInvertedResidualBlock.__name__,
+					'name': ResidualBlock.__name__,
 					'mobile_inverted_conv': {
-						'name': MBInvertedConvLayer.__name__,
+						'name': MBConvLayer.__name__,
 						'in_channels': in_channels,
 						'out_channels': out_channels,
 						'kernel_size': kernel_size,
@@ -139,7 +136,7 @@ class FLOPsTable:
 						build_config['mobile_inverted_conv']['expand_ratio'] = e
 						build_config['mobile_inverted_conv']['kernel_size'] = ks
 
-						layer = MobileInvertedResidualBlock.build_from_config(build_config)
+						layer = ResidualBlock.build_from_config(build_config)
 						input_shape = (batch_size, in_channels, input_size, input_size)
 
 						if self.pred_type == 'flops':

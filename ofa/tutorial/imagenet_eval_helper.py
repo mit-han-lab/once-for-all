@@ -1,6 +1,4 @@
-import os
 import os.path as osp
-import argparse
 import numpy as np
 import math
 from tqdm import tqdm
@@ -11,9 +9,8 @@ import torch.utils.data
 from torchvision import transforms, datasets
 
 from ofa.utils import AverageMeter, accuracy
-from ofa.model_zoo import ofa_net
 from ofa.model_zoo import ofa_specialized
-from ofa.elastic_nn.utils import set_running_statistics
+from ofa.imagenet_classification.elastic_nn.utils import set_running_statistics
 
 
 def evaluate_ofa_subnet(ofa_net, path, net_config, data_loader, batch_size, device='cuda:0'):

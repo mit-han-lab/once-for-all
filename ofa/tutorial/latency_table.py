@@ -1,7 +1,5 @@
 import yaml
-import copy
 from ofa.utils import download_url
-from ofa.model_zoo import ofa_net
 
 
 class LatencyEstimator(object):

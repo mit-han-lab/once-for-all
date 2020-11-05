@@ -5,6 +5,7 @@ import copy
 
 from ofa.utils import download_url
 
+
 # Helper for constructing the one-hot vectors.
 def construct_maps(keys):
     d = dict()

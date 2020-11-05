@@ -21,6 +21,15 @@ specialized_network_list = [
     'flops@595M_top1@80.0_finetune@75',
     'flops@482M_top1@79.6_finetune@75',
     'flops@389M_top1@79.1_finetune@75',
+    ################# ResNet50 Design Space #################
+    'resnet50D_MAC@4.1B_top1@79.8',
+    'resnet50D_MAC@3.7B_top1@79.7',
+    'resnet50D_MAC@3.0B_top1@79.3',
+    'resnet50D_MAC@2.4B_top1@79.0',
+    'resnet50D_MAC@1.8B_top1@78.3',
+    'resnet50D_MAC@1.2B_top1@77.1_finetune@25',
+    'resnet50D_MAC@0.9B_top1@76.3_finetune@25',
+    'resnet50D_MAC@0.6B_top1@75.0_finetune@25',
     ################# Google pixel1 #################
     'pixel1_lat@143ms_top1@80.1_finetune@75',
     'pixel1_lat@132ms_top1@79.8_finetune@75',
