@@ -169,7 +169,7 @@ class EvolutionFinder:
 			efficiency_pool.append(efficiency)
 
 		accs = self.accuracy_predictor.predict_accuracy(child_pool)
-		for i in range(mutation_numbers):
+		for i in range(population_size):
 			population.append((accs[i].item(), child_pool[i], efficiency_pool[i]))
 
 		if verbose:
