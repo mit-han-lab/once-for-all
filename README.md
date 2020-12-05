@@ -16,7 +16,7 @@
 
 **[News]** OFA is available via pip! Run **```pip install ofa```** to install the whole OFA codebase. 
 
-**[News]** Fisrt place in the 4th [Low-Power Computer Vision Challenge](https://lpcv.ai/competitions/2019), both classification and detection track.
+**[News]** First place in the 4th [Low-Power Computer Vision Challenge](https://lpcv.ai/competitions/2019), both classification and detection track.
 
 **[News]** First place in the 3rd [Low-Power Computer Vision Challenge](https://lpcv.ai/competitions/2019), DSP track at ICCV’19 using the Once-for-all Network.
 
