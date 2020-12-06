@@ -73,6 +73,7 @@ def proxylessnas_net(net_id, pretrained=True):
 		net.load_state_dict(torch.load(
 			download_url('https://hanlab.mit.edu/files/proxylessNAS/%s.pth' % net_id), map_location='cpu'
 		)['state_dict'])
+	return net
 
 
 def proxylessnas_mobile(pretrained=True):
