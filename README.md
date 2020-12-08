@@ -10,6 +10,8 @@
 }
 ```
 
+**[News]** First place in the [CVPR 2020 Low-Power Computer Vision Challenge](https://lpcv.ai/2020CVPR/introduction), CPU detection and FPGA track.
+
 **[News]** OFA-ResNet50 is released. 
 
 **[News]** The [hands-on tutorial](https://hangzhang.org/CVPR2020/) of OFA is released! [![](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/mit-han-lab/once-for-all/blob/master/tutorial/ofa.ipynb)
