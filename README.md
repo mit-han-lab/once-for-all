@@ -33,9 +33,8 @@
 ## Consistently outperforms MobileNetV3 on Diverse hardware platforms
 ![](figures/diverse_hardware.png)
 
-## OFA-ResNet50 Results
+## OFA-ResNet50 [[How to use]](https://github.com/mit-han-lab/once-for-all/blob/master/tutorial/ofa_resnet50_example.ipynb)
 <img src="https://hanlab.mit.edu/files/OnceForAll/figures/ofa_resnst50_results.png" width="60%" />
-How to use: [example](https://github.com/mit-han-lab/once-for-all/blob/master/tutorial/ofa_resnet50_example.ipynb)
 
 ## How to use / evaluate **OFA Networks**
 ### Use
