@@ -35,6 +35,7 @@
 
 ## OFA-ResNet50 Results
 <img src="https://hanlab.mit.edu/files/OnceForAll/figures/ofa_resnst50_results.png" width="60%" />
+How to use: [example](https://github.com/mit-han-lab/once-for-all/blob/master/tutorial/ofa_resnet50_example.ipynb)
 
 ## How to use / evaluate **OFA Networks**
 ### Use
