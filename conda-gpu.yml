@@ -2,13 +2,23 @@ name: ofa-gpu
 
 channels:
   - pytorch
+  - conda-forge
+  - defaults
 dependencies:
   - python==3.7
+  - ccache
+  - cmake
+  - cudatoolkit=11.2
+  - cudnn=8.1.0
+  - cxx-compiler
+  - jupyterlab
+  - mpi4py # installs cuda-aware openmpi
+  - nccl
+  - nvcc_linux-64=11.2
+  - openmpi
   - pip
   - matplotlib
   - opencv
-  - cudnn
-  - cudatoolkit=10.1
   - pip:
     - numpy
     - torch==1.8.1
@@ -19,4 +29,5 @@ dependencies:
     - PyYaml
     - tqdm
     - thop
+    - horovod
     - -e .

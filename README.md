@@ -184,6 +184,28 @@ horovodrun -np 32 -H <server1_ip>:8,<server2_ip>:8,<server3_ip>:8,<server4_ip>:8
 * ImageNet Dataset 
 * Horovod
 
+## Installation
+
+The first thing to do is install [OpenMPI](http://www.open-mpi.org), see the [OpenMPI installation guide](https://edu.itp.phys.ethz.ch/hs12/programming_techniques/openmpi.pdf).
+
+Once this is installed, go ahead and run:
+
+```bash
+  conda env create -f conda-gpu.yml
+```
+
+This enables Horovod with GPU support. 
+
+Next activate the environment:
+
+```bash
+  conda activate onda-gpu
+  pip install .
+```
+
+You can now run ofa with GPU support. 
+
+
 ## Related work on automated and efficient deep learning:
 [ProxylessNAS: Direct Neural Architecture Search on Target Task and Hardware](https://arxiv.org/pdf/1812.00332.pdf) (ICLR’19)
 
