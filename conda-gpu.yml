@@ -8,13 +8,15 @@ dependencies:
   - python==3.7
   - ccache
   - cmake
-  - cudatoolkit=11.2
-  - cudnn=8.1.0
+  - cudatoolkit=10.1
+  - cudnn=7.6.5
   - cxx-compiler
+  - gcc_linux-64
+  - gxx_linux-64
   - jupyterlab
   - mpi4py # installs cuda-aware openmpi
   - nccl
-  - nvcc_linux-64=11.2
+  - nvcc_linux-64=10.1
   - openmpi
   - pip
   - matplotlib
@@ -29,5 +31,6 @@ dependencies:
     - PyYaml
     - tqdm
     - thop
-    - horovod
+    - horovod==0.19.*
     - -e .
+    - --no-binary=horovod

@@ -188,10 +188,31 @@ horovodrun -np 32 -H <server1_ip>:8,<server2_ip>:8,<server3_ip>:8,<server4_ip>:8
 
 The first thing to do is install [OpenMPI](http://www.open-mpi.org), see the [OpenMPI installation guide](https://edu.itp.phys.ethz.ch/hs12/programming_techniques/openmpi.pdf).
 
-Once this is installed, go ahead and run:
+We need to install NCC as well:
+
+We also may need to set the following environment variables to fit your CUDA environment:
 
 ```bash
-  conda env create -f conda-gpu.yml
+  export CUDA=/usr/local/cuda
+  export HOROVOD_CUDA_HOME=/usr/local/cuda
+  export CUDACXX=/usr/local/cuda/bin/nvcc
+  export CUDA_INCLUDE_DIRS=/usr/local/cuda
+  export LD_LIBRARY_PATH=$CUDA/lib64:$LD_LIBRARY_PATH
+  export PATH=$CUDA/bin:$PATH
+
+  export HOROVOD_WITH_PYTORCH=1 
+  export HOROVOD_NCCL_INCLUDE=/usr/include 
+  export HOROVOD_GPU=CUDA 
+  export HOROVOD_WITHOUT_TENSORFLOW=1 
+  export HOROVOD_WITHOUT_MXNET=1 
+  export HOROVOD_WITHOUT_GLOO=1
+  export HOROVOD_GPU_OPERATIONS=NCCL
+```
+
+Next, go ahead and run:
+
+```bash
+  conda env create -f conda-gpu.yml --force
 ```
 
 This enables Horovod with GPU support. 
@@ -199,7 +220,7 @@ This enables Horovod with GPU support.
 Next activate the environment:
 
 ```bash
-  conda activate onda-gpu
+  conda activate ofa-gpu
   pip install .
 ```
 
