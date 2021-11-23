@@ -1,0 +1,36 @@
+name: ofa-gpu
+
+channels:
+  - pytorch
+  - conda-forge
+  - defaults
+dependencies:
+  - python==3.7
+  - ccache
+  - cmake
+  - cudatoolkit=10.1
+  - cudnn=7.6.5
+  - cxx-compiler
+  - gcc_linux-64
+  - gxx_linux-64
+  - jupyterlab
+  - mpi4py # installs cuda-aware openmpi
+  - nccl
+  - nvcc_linux-64=10.1
+  - openmpi
+  - pip
+  - matplotlib
+  - opencv
+  - pip:
+    - numpy
+    - torch==1.8.1
+    - torchaudio==0.8.1
+    - torchvision==0.9.1
+    - torchsummary
+    - filelock
+    - PyYaml
+    - tqdm
+    - thop
+    - horovod==0.19.*
+    - -e .
+    - --no-binary=horovod

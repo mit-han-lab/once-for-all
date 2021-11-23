@@ -1,0 +1,20 @@
+name: ofa-cpu
+
+channels:
+  - pytorch
+dependencies:
+  - python==3.7
+  - pip
+  - matplotlib
+  - opencv
+  - pip:
+    - numpy
+    - torch==1.8.1
+    - torchaudio==0.8.1
+    - torchvision==0.9.1
+    - torchsummary
+    - filelock
+    - PyYaml
+    - tqdm
+    - thop
+    - -e .

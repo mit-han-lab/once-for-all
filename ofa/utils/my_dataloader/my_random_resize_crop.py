@@ -6,6 +6,7 @@ from PIL import Image
 
 import torchvision.transforms.functional as F
 import torchvision.transforms as transforms
+from torchvision.transforms import InterpolationMode
 
 __all__ = ['MyRandomResizedCrop', 'MyResizeRandomCrop', 'MyResize']
 
@@ -69,7 +70,11 @@ class MyRandomResizedCrop(transforms.RandomResizedCrop):
 		MyRandomResizedCrop.ACTIVE_SIZE = random.choices(candidate_sizes, weights=relative_probs)[0]
 
 	def __repr__(self):
-		interpolate_str = _pil_interpolation_to_str[self.interpolation]
+		if isinstance(self.interpolation, InterpolationMode):
+			interpolate_str = self.interpolation.value
+		else:
+			interpolate_str = _pil_interpolation_to_str[self.interpolation]
+
 		format_string = self.__class__.__name__ + '(size={0}'.format(MyRandomResizedCrop.IMAGE_SIZE_LIST)
 		if MyRandomResizedCrop.CONTINUOUS:
 			format_string += '@continuous'
@@ -113,9 +118,14 @@ class MyResizeRandomCrop(object):
 		return F.crop(img, i, j, h, w)
 
 	def __repr__(self):
+		if isinstance(self.interpolation, InterpolationMode):
+			interpolate_str = self.interpolation.value
+		else:
+			interpolate_str = _pil_interpolation_to_str[self.interpolation]
+
 		return 'MyResizeRandomCrop(size=%s%s, interpolation=%s, use_padding=%s, fill=%s)' % (
 			MyRandomResizedCrop.IMAGE_SIZE_LIST, '@continuous' if MyRandomResizedCrop.CONTINUOUS else '',
-			_pil_interpolation_to_str[self.interpolation], self.use_padding, self.fill,
+			interpolate_str, self.use_padding, self.fill,
 		)
 
 
@@ -130,7 +140,12 @@ class MyResize(object):
 		return img
 
 	def __repr__(self):
+		if isinstance(self.interpolation, InterpolationMode):
+			interpolate_str = self.interpolation.value
+		else:
+			interpolate_str = _pil_interpolation_to_str[self.interpolation]
+			
 		return 'MyResize(size=%s%s, interpolation=%s)' % (
 			MyRandomResizedCrop.IMAGE_SIZE_LIST, '@continuous' if MyRandomResizedCrop.CONTINUOUS else '',
-			_pil_interpolation_to_str[self.interpolation]
+			interpolate_str
 		)
