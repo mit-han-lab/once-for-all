@@ -8,11 +8,11 @@ from .resnets import *
 
 
 def get_net_by_name(name):
-	if name == ProxylessNASNets.__name__:
-		return ProxylessNASNets
-	elif name == MobileNetV3.__name__:
-		return MobileNetV3
-	elif name == ResNets.__name__:
-		return ResNets
-	else:
-		raise ValueError('unrecognized type of network: %s' % name)
+    if name == ProxylessNASNets.__name__:
+        return ProxylessNASNets
+    elif name == MobileNetV3.__name__:
+        return MobileNetV3
+    elif name == ResNets.__name__:
+        return ResNets
+    else:
+        raise ValueError("unrecognized type of network: %s" % name)
