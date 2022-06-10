@@ -1,6 +1,6 @@
 dependencies = ['torch', 'torchvision']
 
-from model_zoo import ofa_net, ofa_specialized
+from ofa.model_zoo import ofa_net, ofa_specialized
 
 # general model
 ofa_resnet50 = ofa_net("ofa_resnet50", pretrained=True)
