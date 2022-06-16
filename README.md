@@ -83,7 +83,7 @@ If the above scripts failed to download, you download it manually from [Google D
 `python eval_specialized_net.py --path 'Your path to imagent' --net flops@595M_top1@80.0_finetune@75 `
 
 
-| Model Name | OFA Specialized Sub-nets | Top-1 (%)    | Top-5 (%)    | #Params |  #MACs | 
+| Model Name | Details | Top-1 (%)    | Top-5 (%)    | #Params |  #MACs | 
 |----------------------|:----------:|:----------:|:----------:|:---------:|:------------:| 
 |   **ResNet50 Design Space** |
 | ofa-resnet50D-41 | resnet50D_MAC@4.1B_top1@79.8 | 79.8 | 94.7 | 30.9M | 4.1B |
