@@ -10,6 +10,7 @@
 }
 ```
 **[News]** Once-for-All is available at PyTorch Hub now: https://pytorch.org/hub/pytorch_vision_once_for_all/. 
+
 **[News]** Once-for-All (OFA) Network is adopted by Alibaba and ranked 1st in the open division of the MLPerf Inference Benchmark ([Datacenter](https://mlcommons.org/en/inference-datacenter-10/) and [Edge](https://mlcommons.org/en/inference-edge-10/)).
 
 **[News]** First place in the [CVPR 2020 Low-Power Computer Vision Challenge](https://lpcv.ai/2020CVPR/introduction), CPU detection and FPGA track.
