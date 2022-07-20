@@ -11,7 +11,9 @@
 ```
 **[News]** Once-for-All is available at [PyTorch Hub](https://pytorch.org/hub/pytorch_vision_once_for_all) now!
 
-**[News]** Once-for-All is used by SONY Neural Architecture Search Library [nnabla-nas](https://github.com/sony/nnabla-nas),  ADI MAX78000/MAX78002 Model Training and Synthesis Tool.
+**[News]** Once-for-All (OFA) Network is adopted by [SONY Neural Architecture Search Library](https://github.com/sony/nnabla-nas).
+
+**[News]** Once-for-All (OFA) Network is adopted by [ADI MAX78000/MAX78002 Model Training and Synthesis Tool](https://github.com/MaximIntegratedAI/ai8x-training).
 
 **[News]** Once-for-All (OFA) Network is adopted by Alibaba and ranked 1st in the open division of the MLPerf Inference Benchmark ([Datacenter](https://mlcommons.org/en/inference-datacenter-10/) and [Edge](https://mlcommons.org/en/inference-edge-10/)).
 
