@@ -42,6 +42,13 @@ __all__ = [
 ]
 
 
+def round(x):
+    if isinstance(x, torch.Tensor):
+        
+        return torch.round(x.float())
+    else:
+        return torch.round(torch.tensor(x, dtype=torch.float))
+    
 def adjust_bn_according_to_idx(bn, idx):
     bn.weight.data = torch.index_select(bn.weight.data, 0, idx)
     bn.bias.data = torch.index_select(bn.bias.data, 0, idx)
