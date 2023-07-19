@@ -4,6 +4,7 @@
 
 import json
 import torch
+import gdown
 
 from ofa.utils import download_url
 from ofa.imagenet_classification.networks import get_net_by_name, proxyless_base
@@ -59,6 +60,7 @@ def ofa_specialized(net_id: str, pretrained=True):
 
 def ofa_net(net_id, pretrained=True):
     url_base = "https://raw.githubusercontent.com/han-cai/files/master/ofa/ofa_nets/"
+    googledrive = False
     if net_id == "ofa_proxyless_d234_e346_k357_w1.3":
         net = OFAProxylessNASNets(
             dropout_rate=0,
@@ -91,15 +93,18 @@ def ofa_net(net_id, pretrained=True):
             width_mult_list=[0.65, 0.8, 1.0],
         )
         net_id = "ofa_resnet50_d0-1-2_e0.2-0.25-0.35_w0.65-0.8-1.0"
-        url_base = "https://media.githubusercontent.com/media/han-cai/files/master/ofa/ofa_nets/"
+        url_base = "https://drive.google.com/uc?id=1xy6VIPEHXqbbqNu3xEZUxhp5FbTVs5cQ"
+        googledrive = True
     else:
         raise ValueError("Not supported: %s" % net_id)
 
     if pretrained:
-        init = torch.load(
-            download_url(url_base + net_id, model_dir=".torch/ofa_nets"),
-            map_location="cpu",
-        )["state_dict"]
+        if googledrive:
+            pt_path = f".torch/ofa_nets/{net_id}"
+            gdown.download(url_base, pt_path, quiet=False)
+        else:
+            pt_path = download_url(url_base + net_id, model_dir=".torch/ofa_nets")
+        init = torch.load(pt_path, map_location="cpu")["state_dict"]
         net.load_state_dict(init)
     return net
 
