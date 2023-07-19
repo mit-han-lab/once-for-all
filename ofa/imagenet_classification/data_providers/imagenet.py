@@ -42,7 +42,7 @@ class ImagenetDataProvider(DataProvider):
 
         self._valid_transform_dict = {}
         if not isinstance(self.image_size, int):
-            from ofa.utils.my_dataloader import MyDataLoader
+            from ofa.utils.my_dataloader.my_data_loader import MyDataLoader
 
             assert isinstance(self.image_size, list)
             self.image_size.sort()  # e.g., 160 -> 224
