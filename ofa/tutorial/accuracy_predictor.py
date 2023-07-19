@@ -37,7 +37,7 @@ class AccuracyPredictor:
         if pretrained:
             # load pretrained model
             fname = download_url(
-                "https://hanlab.mit.edu/files/OnceForAll/tutorial/acc_predictor.pth"
+                "https://raw.githubusercontent.com/han-cai/files/master/ofa/acc_predictor.pth"
             )
             self.model.load_state_dict(
                 torch.load(fname, map_location=torch.device("cpu"))

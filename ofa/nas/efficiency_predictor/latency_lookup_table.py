@@ -25,7 +25,7 @@ class LatencyTable(object):
     def __init__(
         self,
         local_dir="~/.ofa/latency_tools/",
-        url="https://hanlab.mit.edu/files/proxylessNAS/LatencyTools/mobile_trim.yaml",
+        url="https://raw.githubusercontent.com/han-cai/files/master/proxylessnas/mobile_trim.yaml",
     ):
         if url.startswith("http"):
             fname = download_url(url, local_dir, overwrite=True)

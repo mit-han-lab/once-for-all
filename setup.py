@@ -43,7 +43,7 @@ setup(
     name="ofa",
     version=VERSION,
     author="MTI HAN LAB ",
-    author_email="hanlab.eecs+github@gmail.com",
+    author_email="hcai.hm@gmail.com",
     url="https://github.com/mit-han-lab/once-for-all",
     description="Once for All: Train One Network and Specialize it for Efficient Deployment.",
     long_description=readme,

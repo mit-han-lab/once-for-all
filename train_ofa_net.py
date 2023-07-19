@@ -137,7 +137,7 @@ if __name__ == "__main__":
     torch.cuda.set_device(hvd.local_rank())
 
     args.teacher_path = download_url(
-        "https://hanlab.mit.edu/files/OnceForAll/ofa_checkpoints/ofa_D4_E6_K7",
+        "https://raw.githubusercontent.com/han-cai/files/master/ofa/ofa_checkpoints/ofa_D4_E6_K7",
         model_dir=".torch/ofa_checkpoints/%d" % hvd.rank(),
     )
 
@@ -255,7 +255,7 @@ if __name__ == "__main__":
         validate_func_dict["ks_list"] = sorted(args.ks_list)
         if distributed_run_manager.start_epoch == 0:
             args.ofa_checkpoint_path = download_url(
-                "https://hanlab.mit.edu/files/OnceForAll/ofa_checkpoints/ofa_D4_E6_K7",
+                "https://raw.githubusercontent.com/han-cai/files/master/ofa/ofa_checkpoints/ofa_D4_E6_K7",
                 model_dir=".torch/ofa_checkpoints/%d" % hvd.rank(),
             )
             load_models(
@@ -284,12 +284,12 @@ if __name__ == "__main__":
 
         if args.phase == 1:
             args.ofa_checkpoint_path = download_url(
-                "https://hanlab.mit.edu/files/OnceForAll/ofa_checkpoints/ofa_D4_E6_K357",
+                "https://raw.githubusercontent.com/han-cai/files/master/ofa/ofa_checkpoints/ofa_D4_E6_K357",
                 model_dir=".torch/ofa_checkpoints/%d" % hvd.rank(),
             )
         else:
             args.ofa_checkpoint_path = download_url(
-                "https://hanlab.mit.edu/files/OnceForAll/ofa_checkpoints/ofa_D34_E6_K357",
+                "https://raw.githubusercontent.com/han-cai/files/master/ofa/ofa_checkpoints/ofa_D34_E6_K357",
                 model_dir=".torch/ofa_checkpoints/%d" % hvd.rank(),
             )
         train_elastic_depth(train, distributed_run_manager, args, validate_func_dict)
@@ -300,12 +300,12 @@ if __name__ == "__main__":
 
         if args.phase == 1:
             args.ofa_checkpoint_path = download_url(
-                "https://hanlab.mit.edu/files/OnceForAll/ofa_checkpoints/ofa_D234_E6_K357",
+                "https://raw.githubusercontent.com/han-cai/files/master/ofa/ofa_checkpoints/ofa_D234_E6_K357",
                 model_dir=".torch/ofa_checkpoints/%d" % hvd.rank(),
             )
         else:
             args.ofa_checkpoint_path = download_url(
-                "https://hanlab.mit.edu/files/OnceForAll/ofa_checkpoints/ofa_D234_E46_K357",
+                "https://raw.githubusercontent.com/han-cai/files/master/ofa/ofa_checkpoints/ofa_D234_E46_K357",
                 model_dir=".torch/ofa_checkpoints/%d" % hvd.rank(),
             )
         train_elastic_expand(train, distributed_run_manager, args, validate_func_dict)

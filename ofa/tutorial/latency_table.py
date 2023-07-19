@@ -6,7 +6,7 @@ class LatencyEstimator(object):
     def __init__(
         self,
         local_dir="~/.hancai/latency_tools/",
-        url="https://hanlab.mit.edu/files/proxylessNAS/LatencyTools/mobile_trim.yaml",
+        url="https://raw.githubusercontent.com/han-cai/files/master/proxylessnas/mobile_trim.yaml",
     ):
         if url.startswith("http"):
             fname = download_url(url, local_dir, overwrite=True)
@@ -198,8 +198,7 @@ class LatencyTable:
 
         for image_size in resolutions:
             self.latency_tables[image_size] = LatencyEstimator(
-                url="https://hanlab.mit.edu/files/OnceForAll/tutorial/latency_table@%s/%d_lookup_table.yaml"
-                % (device, image_size)
+                url=f"https://raw.githubusercontent.com/han-cai/files/master/ofa/{device}/{image_size}_lookup_table.yaml"
             )
             print("Built latency table for image size: %d." % image_size)
 
