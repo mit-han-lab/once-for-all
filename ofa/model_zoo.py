@@ -92,9 +92,8 @@ def ofa_net(net_id, pretrained=True):
             expand_ratio_list=[0.2, 0.25, 0.35],
             width_mult_list=[0.65, 0.8, 1.0],
         )
-        net_id = "ofa_resnet50_d0-1-2_e0.2-0.25-0.35_w0.65-0.8-1.0"
-        url_base = "https://drive.google.com/uc?id=1BoyPbKbAoucnc_blgt_8hjwyb6d-7Kh5"
-        googledrive = True
+        net_id = "ofa_supernet_resnet50"
+        url_base = "https://huggingface.co/han-cai/ofa/resolve/main/"
     else:
         raise ValueError("Not supported: %s" % net_id)
 
